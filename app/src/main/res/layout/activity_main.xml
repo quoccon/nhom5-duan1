@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="25dp"
         android:fontFamily="@font/aref_ruqaa"
         android:gravity="center"
         android:text="Đăng Nhập"
@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:background="@color/white"/>
+            android:background="@drawable/khung"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:background="@color/white"/>
+            android:background="@drawable/khung"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -79,6 +79,7 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:text="Đăng nhập"
+        android:backgroundTint="#BA0F0F"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
