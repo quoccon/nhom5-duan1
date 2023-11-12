@@ -16,14 +16,24 @@
         android:layout_gravity="center" />
 
     <TextView
-        android:layout_marginBottom="30dp"
-        android:gravity="center"
-        android:textColor="#F1C40F"
-        android:textStyle="bold"
-        android:textSize="26sp"
-        android:text="Đăng Nhập"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="@font/aref_ruqaa"
+        android:gravity="center"
+        android:text="Đăng Nhập"
+        android:textColor="#F1C40F"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:fontFamily="@font/aref_ruqaa"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginLeft="20dp"
+        android:text="Tên đăng nhập"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -39,6 +49,16 @@
             android:inputType="textEmailAddress"
             android:background="@color/white"/>
     </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:fontFamily="@font/aref_ruqaa"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Mật khẩu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
