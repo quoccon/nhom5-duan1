@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.example.duan1.Component.User.LoginActivity;
 import com.example.duan1.MainActivity;
 import com.example.duan1.R;
 
@@ -19,7 +20,7 @@ public class WelcomeActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
             }
         },3000);
     }
