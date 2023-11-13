@@ -9,29 +9,52 @@
         android:layout_width="340dp"
         android:layout_height="90dp"
         android:background="#20C1C1"
-        android:text="THÊM LOẠI PHÒNG"
+        android:text="Update Dịch Vụ"
         android:gravity="center"
         android:textSize="30dp"
         android:textColor="@color/black" />
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginHorizontal="10dp"
-        android:id="@+id/a_addLP">
+        android:id="@+id/a_updateKH">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="nhập tên loại phòng"
-            android:id="@+id/b_addLP"/>
+            android:hint="Nhập tên dich vu"
+            android:id="@+id/b_updateTDV"/>
     </com.google.android.material.textfield.TextInputLayout>
-
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:id="@+id/a_updateMTDV">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập mô tả"
+            android:id="@+id/b_updateNSKH"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:id="@+id/a_updateGDV">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập giá sử dụng dịch vụ"
+            android:id="@+id/b_updateSDT"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:orientation="horizontal">
@@ -44,7 +67,7 @@
             android:textColor="#FDED00"
             android:backgroundTint="#A32323"
             android:textSize="17dp"
-            android:id="@+id/addnhanvien"/>
+            android:id="@+id/updatekhachhang"/>
 
     </LinearLayout>
 

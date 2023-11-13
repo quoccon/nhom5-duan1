@@ -1,8 +1,8 @@
 package com.example.duan1.Model;
 
 public class LoaiPhongModel {
-    int  maLoai;
-    String tenLoai;
+    private int  maLoai;
+    private String tenLoai;
 
     public LoaiPhongModel(int maLoai, String tenLoai) {
         this.maLoai = maLoai;

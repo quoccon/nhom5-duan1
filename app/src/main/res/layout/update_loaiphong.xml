@@ -9,7 +9,7 @@
         android:layout_width="340dp"
         android:layout_height="90dp"
         android:background="#20C1C1"
-        android:text="THÊM LOẠI PHÒNG"
+        android:text="Update Loại Phòng"
         android:gravity="center"
         android:textSize="30dp"
         android:textColor="@color/black" />
@@ -18,20 +18,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginHorizontal="10dp"
-        android:id="@+id/a_addLP">
+        android:id="@+id/a_updateKH">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="nhập tên loại phòng"
-            android:id="@+id/b_addLP"/>
+            android:id="@+id/b_updateTLP"/>
     </com.google.android.material.textfield.TextInputLayout>
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:orientation="horizontal">
@@ -44,7 +42,7 @@
             android:textColor="#FDED00"
             android:backgroundTint="#A32323"
             android:textSize="17dp"
-            android:id="@+id/addnhanvien"/>
+            android:id="@+id/updatekhachhang"/>
 
     </LinearLayout>
 
