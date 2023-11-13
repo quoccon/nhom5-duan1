@@ -10,26 +10,31 @@ public class db extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "MyDatabase.db";
     private static final int DATA_VERSION = 1;
 
-
-
     public db(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATA_VERSION);
     }
-
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String tb_NhanVien = "create table NhanVien(maNV,tenNv,namsinh,cccd,username,password)";
-        sqLiteDatabase.execSQL(tb_NhanVien);
-        String tb_LoaiPhong = "create table LoaiPhong(maLoai,tenLoai)";
-        sqLiteDatabase.execSQL(tb_LoaiPhong);
-        String tb_Phong = "create table Phong(maPhong,soPhong,giaThue,trangthai,maLoai)";
-        sqLiteDatabase.execSQL(tb_Phong);
-        String tb_KhachHang = "create table KhachHang(maKH,tenKH,namsinh,cccd)";
-        sqLiteDatabase.execSQL(tb_KhachHang);
-        String tb_DichVu = "create table Dichvu(maDv,tenDv,moTa,giaTien)";
-        sqLiteDatabase.execSQL(tb_DichVu);
-        String tb_HoaDon = "create table HoaDon(maHD,gioBd,gioKT,ngayBD,ngayKT,tongtien,maKH,maLoai,maPhong,maDv,maNV)";
-        sqLiteDatabase.execSQL(tb_HoaDon);
+        String dbNhanVien = "create table NhanVien(MaNv integer primary key autoincrement,tenNv text,namsinh text, password text)";
+        sqLiteDatabase.execSQL(dbNhanVien);
+
+        String dbLoaiPhong = "create table LoaiPhong(maLoai text primary key, tenLoai text)";
+        sqLiteDatabase.execSQL(dbLoaiPhong);
+
+        String dbPhong = "create table Phong(maPhong integer primary key autoincrement, giaThue integer,trangThai text, maLoai text references LoaiPhong(maLoai))";
+        sqLiteDatabase.execSQL(dbPhong);
+
+        String dbKhachHang = "create table KhachHang(maKH integer primary key autoincrement,tenKH text, namsinh text, cccd integer)";
+        sqLiteDatabase.execSQL(dbKhachHang);
+
+        String dbDichVu = "create table DichVu(maDv integer primary key autoincrement, tendV text, giatien integer, mota text)";
+        sqLiteDatabase.execSQL(dbDichVu);
+
+        String dbHoaDon = "create table HoaDon(maHD integer primary key autoincrement, giodb text, ngaydb text, giokt text,ngaykt text,tongTien integer," +
+                "maKH integer references KhachHang(maKH),maLoai integer references LoaiPhong(maLoai),maPhong integer references Phong(maPhong),maDv integer references DichVu(maDv),maNv integer references NhanVien(maNv))";
+        sqLiteDatabase.execSQL(dbHoaDon);
+
+
     }
 
     @Override
@@ -39,7 +44,7 @@ public class db extends SQLiteOpenHelper {
             sqLiteDatabase.execSQL("drop table if exists LoaiPhong");
             sqLiteDatabase.execSQL("drop table if exists Phong");
             sqLiteDatabase.execSQL("drop table if exists KhachHang");
-            sqLiteDatabase.execSQL("drop table if exists Dichvu");
+            sqLiteDatabase.execSQL("drop table if exists DichVu");
             sqLiteDatabase.execSQL("drop table if exists HoaDon");
             onCreate(sqLiteDatabase);
         }
