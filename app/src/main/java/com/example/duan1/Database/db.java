@@ -18,7 +18,7 @@ public class db extends SQLiteOpenHelper {
         String dbNhanVien = "create table NhanVien(MaNv integer primary key autoincrement,tenNv text,namsinh text, password text)";
         sqLiteDatabase.execSQL(dbNhanVien);
 
-        String dbLoaiPhong = "create table LoaiPhong(maLoai text primary key, tenLoai text)";
+        String dbLoaiPhong = "create table LoaiPhong(maLoai integer primary key autoincrement, tenLoai text)";
         sqLiteDatabase.execSQL(dbLoaiPhong);
 
         String dbPhong = "create table Phong(maPhong integer primary key autoincrement, giaThue integer,trangThai text, maLoai text references LoaiPhong(maLoai))";
