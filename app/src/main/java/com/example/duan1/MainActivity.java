@@ -20,10 +20,7 @@ private TextView txtRegNow;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        edEmail = findViewById(R.id.idEmail);
-        edPass = findViewById(R.id.idPass);
-        btnLogin = findViewById(R.id.btnLogin);
-        txtRegNow = findViewById(R.id.txtRegNow);
+
 
 
         txtRegNow.setOnClickListener(new View.OnClickListener() {
