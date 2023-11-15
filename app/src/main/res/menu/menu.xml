@@ -2,33 +2,33 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menuQLKH"
-        android:icon="@drawable/img"
+        android:icon="@drawable/iconkh"
         android:title="Quản lý khách hàng" />
     <item
         android:id="@+id/menuQLNV"
-        android:icon="@drawable/img"
+        android:icon="@drawable/iconnv"
         android:title="Quản lý nhân viên" />
     <item
         android:id="@+id/menuQLLP"
-        android:icon="@drawable/img"
+        android:icon="@drawable/iconlp"
         android:title="Quản lý loại phòng" />
     <item
         android:id="@+id/menuQLP"
-        android:icon="@drawable/img"
+        android:icon="@drawable/iconp"
         android:title="Quản lý phòng" />
     <item
         android:id="@+id/menuQLDV"
-        android:icon="@drawable/img"
+        android:icon="@drawable/icondv"
         android:title="Quản lý dịch vụ" />
     <item
         android:id="@+id/menuQLHD"
-        android:icon="@drawable/img"
+        android:icon="@drawable/iconhd"
         android:title="Quản lý hóa đơn" />
     <item android:title="Thống kê">
         <menu>
             <item
                 android:id="@+id/menuDT"
-                android:icon="@drawable/img"
+                android:icon="@drawable/icontk"
                 android:title="Doanh thu" />
         </menu>
     </item>
@@ -36,11 +36,11 @@
         <menu>
             <item
                 android:id="@+id/menuDoiMK"
-                android:icon="@drawable/img"
+                android:icon="@drawable/icondmk"
                 android:title="Đổi mật khẩu" />
             <item
                 android:id="@+id/menuDX"
-                android:icon="@drawable/img"
+                android:icon="@drawable/iconlogout"
                 android:title="Đăng xuất" />
         </menu>
     </item>

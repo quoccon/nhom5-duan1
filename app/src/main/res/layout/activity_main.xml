@@ -6,33 +6,35 @@
     android:layout_height="match_parent"
     tools:openDrawer="start"
     android:id="@+id/drawerLayout"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:fitsSystemWindows="true">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#00B8D4"/>
-
+            android:layout_height="?attr/actionBarSize"
+            android:background="#45B39D"
+            android:elevation="4dp"/>
+        
         <FrameLayout
-            android:id="@+id/frameLayout"
+            android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-    </LinearLayout>
+
+    </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/navigationView"
-        app:menu="@menu/menu"
+        android:id="@+id/navigation_drawer"
         android:layout_gravity="start"
-        app:headerLayout="@layout/header_layout"/>
+        app:headerLayout="@layout/header"
+        app:menu="@menu/menu"/>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
