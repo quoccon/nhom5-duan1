@@ -44,7 +44,7 @@
             android:textColor="#FDED00"
             android:backgroundTint="#A32323"
             android:textSize="17dp"
-            android:id="@+id/addnhanvien"/>
+            android:id="@+id/addloaiphong"/>
 
     </LinearLayout>
 

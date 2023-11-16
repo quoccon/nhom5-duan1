@@ -17,7 +17,7 @@ import com.example.duan1.R;
 
 import java.util.ArrayList;
 
-public class LoaiSachAdapter extends ArrayAdapter<LoaiPhongModel> {
+public class LoaiPhongAdapter extends ArrayAdapter<LoaiPhongModel> {
     private Context context;
     LoaiPhongFragment loaiPhongFragment;
 
@@ -27,7 +27,7 @@ public class LoaiSachAdapter extends ArrayAdapter<LoaiPhongModel> {
     ImageView deleteLP;
 
 
-    public LoaiSachAdapter (Context context, LoaiPhongFragment loaiPhongFragment , ArrayList<LoaiPhongModel> list){
+    public LoaiPhongAdapter(Context context, LoaiPhongFragment loaiPhongFragment , ArrayList<LoaiPhongModel> list){
         super(context,0 ,list);
         this.context  = context;
         this.list = list;
@@ -47,17 +47,19 @@ public class LoaiSachAdapter extends ArrayAdapter<LoaiPhongModel> {
             //ánh xạ
             tv_maLoai = v.findViewById(R.id.tv_maLP);
             tv_tenLoai = v.findViewById(R.id.tv_tenLP);
+            deleteLP = v.findViewById(R.id.deleteLP);
 
             //set
             tv_maLoai.setText(item.getMaLoai() + " ");
             tv_tenLoai.setText(item.getTenLoai());
         }
 
+
         // code hành động nút xoóa
         deleteLP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                loaiPhongFragment.DeleteLP(String.valueOf(item.getMaLoai()));
             }
         });
         return v;
