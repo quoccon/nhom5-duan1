@@ -58,7 +58,7 @@ public class DichVuAdapter extends ArrayAdapter<DichVuModel> {
         deleteDV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                dichVuFragment.DeleteDV(String.valueOf(item.getMaDV()));
             }
         });
         return v;
