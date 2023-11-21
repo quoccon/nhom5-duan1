@@ -7,8 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.duan1.Database.db;
-import com.example.duan1.Model.KhachHangModel;
-import com.example.duan1.Model.LoaiPhongModel;
 import com.example.duan1.Model.NhanVienModel;
 
 import java.util.ArrayList;
@@ -60,9 +58,10 @@ public class NhanVienDAO {
             return false;
         }
     }
-    public void delete(int maNV){
+    public int delete(int maNV){
         SQLiteDatabase db = DbHelper.getWritableDatabase();
         db.delete("NhanVien","MaNV = ?",new String[]{String.valueOf(maNV)});
         db.close();
+        return -1;
     }
 }

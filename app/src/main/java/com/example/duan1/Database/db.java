@@ -13,6 +13,7 @@ public class db extends SQLiteOpenHelper {
     public db(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATA_VERSION);
     }
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String dbNhanVien = "create table NhanVien(MaNv integer primary key autoincrement,tenNv text,namsinh text, password text)";
@@ -24,7 +25,7 @@ public class db extends SQLiteOpenHelper {
         String dbPhong = "create table Phong(maPhong integer primary key autoincrement, giaThue integer,trangThai text, maLoai text references LoaiPhong(maLoai))";
         sqLiteDatabase.execSQL(dbPhong);
 
-        String dbKhachHang = "create table KhachHang(maKH integer primary key autoincrement,tenKH text, namsinh text, cccd integer)";
+        String dbKhachHang = "create table KhachHang(maKH integer primary key autoincrement,tenKH text, namsinh integer, cccd text)";
         sqLiteDatabase.execSQL(dbKhachHang);
 
         String dbDichVu = "create table DichVu(maDv integer primary key autoincrement, tendV text, giatien integer, mota text)";
@@ -35,11 +36,12 @@ public class db extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(dbHoaDon);
 
 
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        if (i!=i1){
+        if (i != i1) {
             sqLiteDatabase.execSQL("drop table if exists NhanVien");
             sqLiteDatabase.execSQL("drop table if exists LoaiPhong");
             sqLiteDatabase.execSQL("drop table if exists Phong");

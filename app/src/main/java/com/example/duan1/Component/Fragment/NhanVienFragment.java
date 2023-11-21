@@ -216,14 +216,4 @@ public class NhanVienFragment extends Fragment {
 
 
     }
-
-    public void xoa(final String Id) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("delete");
-        builder.setMessage("bạn có muốn xóa không");
-        builder.setCancelable(true);
-
-
-    }
-
 }
