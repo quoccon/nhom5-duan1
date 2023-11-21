@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.duan1.DAO.KhachHangDAO;
 import com.example.duan1.Model.KhachHangModel;
 import com.example.duan1.R;
 
@@ -19,6 +20,14 @@ import java.util.ArrayList;
 public class KhachHangAdapter extends RecyclerView.Adapter<KhachHangAdapter.ViewHolder> {
     private Context context;
     private ArrayList<KhachHangModel> list;
+
+    KhachHangDAO dao;
+
+    public KhachHangAdapter (Context context ,ArrayList<KhachHangModel> list ){
+        this.context=context;
+        this.list = list;
+        dao = new KhachHangDAO(context);
+    }
 
     @NonNull
     @Override
@@ -30,7 +39,11 @@ public class KhachHangAdapter extends RecyclerView.Adapter<KhachHangAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull KhachHangAdapter.ViewHolder holder, int position) {
-
+        holder.txtMaKH.setText(String.valueOf(list.get(position).getMaKH()));
+        holder.txtTenKH.setText(list.get(position).getTenKhachHang());
+        holder.txtNamSinh_KH.setText(String.valueOf(list.get(position).getNamSinh()));
+        holder.txtCCCD_KH.setText(String.valueOf(list.get(position).getCCCD()));
+        KhachHangModel nv = list.get(position);
     }
 
     @Override

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.example.duan1.R;
 
 
-public class DoanhThuFragment extends Fragment {
+public class    DoanhThuFragment extends Fragment {
 
 
 

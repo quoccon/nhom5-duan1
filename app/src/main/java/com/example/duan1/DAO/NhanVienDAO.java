@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.duan1.Database.db;
 import com.example.duan1.Model.KhachHangModel;
+import com.example.duan1.Model.LoaiPhongModel;
 import com.example.duan1.Model.NhanVienModel;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class NhanVienDAO {
     public ArrayList<NhanVienModel> getNhanVienModel() {
         ArrayList<NhanVienModel> list = new ArrayList<>();
         SQLiteDatabase db = DbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from NhanVienModel", null);
+        Cursor cursor = db.rawQuery("select * from NhanVien", null);
         if (cursor.getCount() != 0) {
             cursor.moveToNext();
             do {
@@ -31,14 +32,14 @@ public class NhanVienDAO {
         }
         return list;
     }
-    public boolean inser(String tennhanvien, String namsinh, String taikhoan, String matkhau) {
-        SQLiteDatabase db = DbHelper.getReadableDatabase();
+    public boolean insert(String tennhanvien, String namsinh, String taikhoan, String matkhau) {
+        SQLiteDatabase db = DbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("Tennhanvien",tennhanvien);
+        values.put("tennhanvien",tennhanvien);
         values.put("namsinh", namsinh);
         values.put("taikhoan", taikhoan);
         values.put("matkhau", matkhau);
-        long check = db.insert("NhanVien", null, values);
+        long check = db.insert("NhanVien",null, values);
         if (check == -1) {
             return false;
         } else {
@@ -46,7 +47,7 @@ public class NhanVienDAO {
         }
     }
     public boolean update(int maNV,String tennhanvien, String namsinh, String taikhoan, String matkhau) {
-        SQLiteDatabase db = DbHelper.getReadableDatabase();
+        SQLiteDatabase db = DbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("Tennhanvien",tennhanvien);
         values.put("namsinh", namsinh);
