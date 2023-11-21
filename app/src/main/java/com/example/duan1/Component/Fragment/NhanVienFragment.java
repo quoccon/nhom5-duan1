@@ -171,83 +171,48 @@ public class NhanVienFragment extends Fragment {
             }
         });
 
-//        btnaddnv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String ten = b_addNV.getText().toString();
-//                String namsinh = b_addNSNV.getText().toString();
-//                String taikhoan = b_addTK.getText().toString();
-//                String MatKhau = b_addMK.getText().toString();
-//                boolean check = dao.inser(ten, namsinh, taikhoan, MatKhau);
-//
-//                if (ten.isEmpty() || namsinh.isEmpty() || taikhoan.isEmpty() || MatKhau.isEmpty()) {
-//                    if (ten.equals("")) {
-//                        a_addNV.setError("vui lòng nhập đầy đủ tên nhân viên ");
-//                    } else {
-//                        a_addNV.setError(null);
-//                    }
-//                    if (namsinh.equals("")) {
-//                        a_addNSNNV.setError("vui lòng nhập đầy đủ năm sinh");
-//                    } else {
-//                        a_addNSNNV.setError(null);
-//                    }
-//                    if (taikhoan.equals("")) {
-//                        a_addTK.setError("vui lòng nhập tài khoản");
-//                    } else {
-//                        a_addTK.setError(null);
-//                    }
-//                    if (MatKhau.equals("")) {
-//                        a_addMK.setError("vui lòng nhập mật khẩu");
-//                    } else {
-//                        a_addMK.setError(null);
-//                    }
-//                } else {
-//                    if (check) {
-//                        loadData();
-//                        Toast.makeText(getContext(), "thêm nhân viên thành công", Toast.LENGTH_SHORT).show();
-//                        dialog.dismiss();
-//                    } else {
-//                        Toast.makeText(getContext(), "thêm nhân viên thất bại", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            }
-//        });
         btnaddnv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String tennhanvien = b_addNV.getText().toString();
+                String ten = b_addNV.getText().toString();
                 String namsinh = b_addNSNV.getText().toString();
                 String taikhoan = b_addTK.getText().toString();
-                String matkhau = b_addMK.getText().toString();
-//                boolean check = dao.insert(tennhanvien, namsinh, taikhoan, matkhau);
-                if (TextUtils.isEmpty(b_addNV.getText().toString())|| TextUtils.isEmpty(b_addNSNV.getText().toString())||TextUtils.isEmpty(b_addTK.getText().toString())||TextUtils.isEmpty(b_addMK.getText().toString())) {
-                    if (tennhanvien.isEmpty()) {
-                        a_addNV.setError("Vui lòng nhập đầy đủ tên nhân viên");
+                String MatKhau = b_addMK.getText().toString();
+                boolean check = dao.insert(ten, namsinh, taikhoan, MatKhau);
+
+                if (ten.isEmpty() || namsinh.isEmpty() || taikhoan.isEmpty() || MatKhau.isEmpty()) {
+                    if (ten.equals("")) {
+                        a_addNV.setError("vui lòng nhập đầy đủ tên nhân viên ");
                     } else {
                         a_addNV.setError(null);
                     }
-                    if (namsinh.isEmpty()) {
-                        a_addNSNNV.setError("Vui lòng nhập đầy đủ năm sinh");
+                    if (namsinh.equals("")) {
+                        a_addNSNNV.setError("vui lòng nhập đầy đủ năm sinh");
                     } else {
                         a_addNSNNV.setError(null);
                     }
-                    if (taikhoan.isEmpty()) {
-                        a_addTK.setError("Vui lòng nhập tài khoản");
+                    if (taikhoan.equals("")) {
+                        a_addTK.setError("vui lòng nhập tài khoản");
                     } else {
                         a_addTK.setError(null);
                     }
-                    if (matkhau.isEmpty()) {
-                        a_addMK.setError("Vui lòng nhập mật khẩu");
+                    if (MatKhau.equals("")) {
+                        a_addMK.setError("vui lòng nhập mật khẩu");
                     } else {
                         a_addMK.setError(null);
                     }
-
-
                 } else {
-
+                    if (check) {
+                        loadData();
+                        Toast.makeText(getContext(), "thêm nhân viên thành công", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    } else {
+                        Toast.makeText(getContext(), "thêm nhân viên thất bại", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
+
 
 
     }
