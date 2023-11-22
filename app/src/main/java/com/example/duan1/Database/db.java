@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class db extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "MyDatabase.db";
-    private static final int DATA_VERSION = 1;
+    private static final int DATA_VERSION = 2;
 
     public db(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATA_VERSION);
@@ -25,7 +25,7 @@ public class db extends SQLiteOpenHelper {
         String dbPhong = "create table Phong(maPhong integer primary key autoincrement, giaThue integer,trangThai text, maLoai text references LoaiPhong(maLoai))";
         sqLiteDatabase.execSQL(dbPhong);
 
-        String dbKhachHang = "create table KhachHang(maKH integer primary key autoincrement,tenKH text, namsinh integer, cccd text)";
+        String dbKhachHang = "create table KhachHang(maKH integer primary key autoincrement,tenKH text, namsinh text, cccd text)";
         sqLiteDatabase.execSQL(dbKhachHang);
 
         String dbDichVu = "create table DichVu(maDv integer primary key autoincrement, tendV text, giatien integer, mota text)";

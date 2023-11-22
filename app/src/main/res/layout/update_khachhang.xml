@@ -60,7 +60,7 @@
         <Button
             android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:text="THÊM"
+            android:text="Sửa"
             android:textStyle="bold"
             android:layout_marginRight="10dp"
             android:textColor="#FDED00"

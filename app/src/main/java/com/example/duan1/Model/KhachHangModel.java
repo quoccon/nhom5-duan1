@@ -3,13 +3,13 @@ package com.example.duan1.Model;
 public class KhachHangModel {
     private int MaKH;
     private String TenKhachHang;
-    private int NamSinh;
+    private String NamSinh;
     private String CCCD;
 
     public KhachHangModel() {
     }
 
-    public KhachHangModel(int maKH, String tenKhachHang, int namSinh, String CCCD) {
+    public KhachHangModel(int maKH, String tenKhachHang, String namSinh, String CCCD) {
         MaKH = maKH;
         TenKhachHang = tenKhachHang;
         NamSinh = namSinh;
@@ -32,11 +32,11 @@ public class KhachHangModel {
         TenKhachHang = tenKhachHang;
     }
 
-    public int getNamSinh() {
+    public String getNamSinh() {
         return NamSinh;
     }
 
-    public void setNamSinh(int namSinh) {
+    public void setNamSinh(String namSinh) {
         NamSinh = namSinh;
     }
 

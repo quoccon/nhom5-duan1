@@ -1,5 +1,6 @@
 package com.example.duan1.DAO;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -9,65 +10,60 @@ import com.example.duan1.Database.db;
 import com.example.duan1.Model.KhachHangModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class KhachHangDAO {
 
-    db DbHelper;
+    SQLiteDatabase data;
 
-    public KhachHangDAO(Context context) {
-        DbHelper = new db(context);
+
+    public KhachHangDAO(Context context){
+        db db1 = new db(context);
+        data = db1.getWritableDatabase();
     }
-    public ArrayList<KhachHangModel> getKhachHangModel() {
-        ArrayList<KhachHangModel> list = new ArrayList<>();
-        SQLiteDatabase db = DbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from KhachHangModel", null);
-        if (cursor.getCount() != 0) {
-            cursor.moveToNext();
-            do {
-                list.add(new KhachHangModel(cursor.getInt(0), cursor.getString(1), cursor.getInt(2), cursor.getString(3)));
-            } while (cursor.moveToNext());
+
+    public long insertKH(KhachHangModel objDV){
+        ContentValues values = new ContentValues();
+        values.put("tenKH",objDV.getTenKhachHang());
+        values.put("namsinh",objDV.getNamSinh());
+        values.put("cccd",objDV.getCCCD());
+        return data.insert("KhachHang",null,values);
+    }
+    public long updateKH(KhachHangModel objDV){
+        ContentValues values = new ContentValues();
+        values.put("tenKH",objDV.getTenKhachHang());
+        values.put("namsinh",objDV.getNamSinh());
+        values.put("cccd",objDV.getCCCD());
+        return  data.update("KhachHang",values,"maKH = ?",new String[]{String.valueOf(objDV.getMaKH())});
+    }
+    public long delete(String id){
+        return data.delete("KhachHang","maKH = ?", new String[]{String.valueOf(id)});
+
+    }
+    public List<KhachHangModel> getAll() {
+        String sql = "SELECT * FROM KhachHang";
+        return getData(sql);
+    }
+
+    public KhachHangModel getID(String id) {
+        String sql = "SELECT * FROM KhachHang WHERE maKH=?";
+        List<KhachHangModel> list = getData(sql, id);
+        return list.get(0);
+    }
+    @SuppressLint("Range")
+    private List<KhachHangModel> getData(String sql, String... selectionArgs) {
+        List<KhachHangModel> list = new ArrayList<>();
+        Cursor cursor = data.rawQuery(sql, selectionArgs);
+        while (cursor.moveToNext()) {
+            KhachHangModel obj = new KhachHangModel();
+            obj.setMaKH(Integer.parseInt(cursor.getString(cursor.getColumnIndex("maKH"))));
+            obj.setTenKhachHang(cursor.getString(cursor.getColumnIndex("tenKH")));
+            obj.setNamSinh(cursor.getString(cursor.getColumnIndex("namsinh")));
+            obj.setCCCD(cursor.getString(cursor.getColumnIndex("cccd")));
+            list.add(obj);
         }
         return list;
     }
-
-
-    public boolean insert(String tenkhachhang,int nams,String cccd) {
-        SQLiteDatabase sqLiteDatabase = DbHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("tenkhachhang", tenkhachhang);
-        values.put("namsinh", nams);
-        values.put("CCCD", cccd);
-        long check = sqLiteDatabase.insert("KhachHang", null, values);
-        if (check == -1) {
-            return false;
-        } else {
-            return false;
-        }
-    }
-
-
-    public boolean update(int maKH, String tenkhachhang, int namsinh, String CCCD) {
-        SQLiteDatabase db = DbHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("Tenkhachhang", tenkhachhang);
-        values.put("namsinh", namsinh);
-        values.put("CCCD", CCCD);
-        long check = db.update("KhachHang", values, "MaKH =?", new String[]{String.valueOf(maKH)});
-        if (check == -1) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public int delete(int maKH){
-        SQLiteDatabase db = DbHelper.getWritableDatabase();
-        db.delete("KhachHang","MaKH = ?",new String[]{String.valueOf(maKH)});
-        db.close();
-        return -1;
-    }
-
-
 
 
 }
