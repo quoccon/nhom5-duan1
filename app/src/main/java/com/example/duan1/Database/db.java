@@ -16,7 +16,7 @@ public class db extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String dbNhanVien = "create table NhanVien(MaNv integer primary key autoincrement,tenNv text,namsinh text, password text)";
+        String dbNhanVien = "create table NhanVien(MaNv integer primary key autoincrement,tenNv text,namsinh text,Username text, password text)";
         sqLiteDatabase.execSQL(dbNhanVien);
 
         String dbLoaiPhong = "create table LoaiPhong(maLoai integer primary key autoincrement, tenLoai text)";

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,6 +33,8 @@ public class NhanVienFragment extends Fragment {
     FloatingActionButton addnv;
     RecyclerView rcv;
     NhanVienDAO dao;
+
+    SearchView searchView;
     ArrayList<NhanVienModel> list;
 
 
@@ -47,8 +50,34 @@ public class NhanVienFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_nhan_vien, container, false);
         rcv = view.findViewById(R.id.rcv_NV);
         addnv = view.findViewById(R.id.add_NV);
+        searchView = view.findViewById(R.id.sv);
         dao = new NhanVienDAO(getContext());
         loadData();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (newText.isEmpty()){
+                    list.clear();
+                    list.addAll(dao.getNhanVienModel());
+                    adapter.notifyDataSetChanged();
+                }else {
+                    list.clear();
+                    list.addAll(dao.tim("%"+newText+"%"));
+                    adapter.notifyDataSetChanged();
+                }
+                return false;
+            }
+        });
+
+
+
+
+
         addnv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -212,7 +241,6 @@ public class NhanVienFragment extends Fragment {
                 }
             }
         });
-
 
 
     }

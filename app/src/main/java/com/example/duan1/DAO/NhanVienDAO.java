@@ -30,38 +30,59 @@ public class NhanVienDAO {
         }
         return list;
     }
-    public boolean insert(String tennhanvien, String namsinh, String taikhoan, String matkhau) {
+
+    public boolean insert(String tenNv, String namsinh, String Username, String password) {
         SQLiteDatabase db = DbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("tennhanvien",tennhanvien);
+        values.put("tenNv", tenNv);
         values.put("namsinh", namsinh);
-        values.put("taikhoan", taikhoan);
-        values.put("matkhau", matkhau);
-        long check = db.insert("NhanVien",null, values);
+        values.put("Username", Username);
+        values.put("password", password);
+        long check = db.insert("NhanVien", null, values);
+        if (check == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean update(int MaNV, String tenNv, String namsinh, String Username, String password) {
+        SQLiteDatabase db = DbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("tenNv", tenNv);
+        values.put("namsinh", namsinh);
+        values.put("Username", Username);
+        values.put("password", password);
+        long check = db.update("NhanVien", values, "MaNV =?", new String[]{String.valueOf(MaNV)});
         if (check == -1) {
             return false;
         } else {
             return false;
         }
     }
-    public boolean update(int maNV,String tennhanvien, String namsinh, String taikhoan, String matkhau) {
+
+    public boolean delete(int MaNV) {
         SQLiteDatabase db = DbHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("Tennhanvien",tennhanvien);
-        values.put("namsinh", namsinh);
-        values.put("taikhoan", taikhoan);
-        values.put("matkhau", matkhau);
-        long check = db.update("NhanVien",values,"MaNV =?", new String[]{String.valueOf(maNV)});
+        long check = db.delete("NhanVien", "MaNV = ?", new String[]{String.valueOf(MaNV)});
         if (check == -1) {
             return false;
         } else {
-            return false;
+            return true;
         }
+
     }
-    public int delete(int maNV){
-        SQLiteDatabase db = DbHelper.getWritableDatabase();
-        db.delete("NhanVien","MaNV = ?",new String[]{String.valueOf(maNV)});
-        db.close();
-        return -1;
+
+    public ArrayList<NhanVienModel> tim(String name) {
+        ArrayList<NhanVienModel> list = new ArrayList<>();
+        SQLiteDatabase db = DbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from NhanVien where tenNv like ?", new String[]{name});
+        if (cursor.getCount() != 0) {
+            cursor.moveToFirst();
+            do {
+                list.add(new NhanVienModel(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4)));
+
+            } while (cursor.moveToNext());
+        }
+        return list;
     }
 }

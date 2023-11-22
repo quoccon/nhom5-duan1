@@ -1,6 +1,5 @@
 package com.example.duan1.Adapter;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -8,7 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +19,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.duan1.DAO.NhanVienDAO;
-import com.example.duan1.Model.KhachHangModel;
 import com.example.duan1.Model.NhanVienModel;
 import com.example.duan1.R;
 import com.google.android.material.textfield.TextInputEditText;
@@ -52,11 +49,11 @@ public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull NhanVienAdapter.ViewHolder holder, int position) {
-        holder.txtmaNV.setText(String.valueOf(list.get(position).getMaNV()));
-        holder.txttenNV.setText(list.get(position).getTenNV());
-        holder.txtnamsinhNV.setText(list.get(position).getNamSinh());
-        holder.txttaikhoanNV.setText(list.get(position).getTaiKhoan());
-        holder.txtmatKhauNV.setText(list.get(position).getMatKhau());
+        holder.txtmaNV.setText(String.valueOf(list.get(position).getMaNv()));
+        holder.txttenNV.setText(list.get(position).getTenNv());
+        holder.txtnamsinhNV.setText(list.get(position).getNamsinh());
+        holder.txttaikhoanNV.setText(list.get(position).getUsername());
+        holder.txtmatKhauNV.setText(list.get(position).getPassword());
         NhanVienModel nv = list.get(position);
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -66,34 +63,32 @@ public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienAdapter.ViewHo
                 return false;
             }
         });
+
         holder.deleteNV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Delete");
-                builder.setMessage("Bạn chắc chắn muốn xóa thành viên này chứ");
-                builder.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
+                builder.setMessage("Bạn thật sự muốn xóa nhân viên này chứ");
+                builder.setPositiveButton("xóa", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        int check = dao.delete(list.get(holder.getAdapterPosition()).getMaNV());
-                        switch (check) {
-                            case 1:
-                                loadData();
-                                Toast.makeText(context, "Xóa thành viên thành công", Toast.LENGTH_SHORT).show();
-                                break;
-                            case 0:
-                                Toast.makeText(context, "Xóa thành viên thất bại", Toast.LENGTH_SHORT).show();
-                                break;
-                            case -1:
-                                Toast.makeText(context, "Thành viên đang tồn tại phiếu mượn, hiện tại không thể xóa", Toast.LENGTH_SHORT).show();
-                                break;
-                            default:
-                                break;
+                        NhanVienDAO dao = new NhanVienDAO(context);
+                        boolean check = dao.delete(list.get(holder.getAdapterPosition()).getMaNv());
+                        if (check) {
+                            list.clear();
+                            list = dao.getNhanVienModel();
+                            notifyDataSetChanged();
+                            Toast.makeText(context, "Xóa nhân viên thành công", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, "Xóa nhân viên không thành công", Toast.LENGTH_SHORT).show();
                         }
+
                     }
                 });
                 builder.setNegativeButton("Hủy", null);
                 builder.create().show();
+
             }
         });
 
@@ -147,10 +142,10 @@ public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienAdapter.ViewHo
         TextInputEditText b_updateMK = view.findViewById(R.id.b_updateMK);
         Button btnupdateNV = view.findViewById(R.id.updatenhanvien);
 
-        b_updateNV.setText(nhanVienModel.getTenNV());
-        b_updateNSNV.setText(nhanVienModel.getNamSinh());
-        b_updateTK.setText(nhanVienModel.getTaiKhoan());
-        b_updateMK.setText(nhanVienModel.getMatKhau());
+        b_updateNV.setText(nhanVienModel.getTenNv());
+        b_updateNSNV.setText(nhanVienModel.getNamsinh());
+        b_updateTK.setText(nhanVienModel.getUsername());
+        b_updateMK.setText(nhanVienModel.getPassword());
 
         b_updateNV.addTextChangedListener(new TextWatcher() {
             @Override
@@ -267,10 +262,10 @@ public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienAdapter.ViewHo
                 } else {
                     if (check) {
                         loadData();
-                        Toast.makeText(context, "thêm nhân viên thành công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "update nhân viên thành công", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     } else {
-                        Toast.makeText(context, "thêm nhân viên thất bại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "update nhân viên thất bại", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -278,9 +273,6 @@ public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienAdapter.ViewHo
 
 
     }
-
-
-
 
 
 }

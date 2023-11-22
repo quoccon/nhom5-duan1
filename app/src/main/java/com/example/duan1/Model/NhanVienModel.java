@@ -1,60 +1,60 @@
 package com.example.duan1.Model;
 
 public class NhanVienModel {
-    private int MaNV;
-    private String tenNV;
-    private String NamSinh;
-    private String TaiKhoan;
-    private String MatKhau;
+    private int MaNv;
+    private String tenNv;
+    private String namsinh;
+    private String Username;
+    private String password;
 
     public NhanVienModel() {
     }
 
-    public NhanVienModel(int maNV, String tenNV, String namSinh, String taiKhoan, String matKhau) {
-        MaNV = maNV;
-        this.tenNV = tenNV;
-        NamSinh = namSinh;
-        TaiKhoan = taiKhoan;
-        MatKhau = matKhau;
+    public NhanVienModel(int maNv, String tenNv, String namsinh, String username, String password) {
+        MaNv = maNv;
+        this.tenNv = tenNv;
+        this.namsinh = namsinh;
+        Username = username;
+        this.password = password;
     }
 
-    public int getMaNV() {
-        return MaNV;
+    public int getMaNv() {
+        return MaNv;
     }
 
-    public void setMaNV(int maNV) {
-        MaNV = maNV;
+    public void setMaNv(int maNv) {
+        MaNv = maNv;
     }
 
-    public String getTenNV() {
-        return tenNV;
+    public String getTenNv() {
+        return tenNv;
     }
 
-    public void setTenNV(String tenNV) {
-        this.tenNV = tenNV;
+    public void setTenNv(String tenNv) {
+        this.tenNv = tenNv;
     }
 
-    public String getNamSinh() {
-        return NamSinh;
+    public String getNamsinh() {
+        return namsinh;
     }
 
-    public void setNamSinh(String namSinh) {
-        NamSinh = namSinh;
+    public void setNamsinh(String namsinh) {
+        this.namsinh = namsinh;
     }
 
-    public String getTaiKhoan() {
-        return TaiKhoan;
+    public String getUsername() {
+        return Username;
     }
 
-    public void setTaiKhoan(String taiKhoan) {
-        TaiKhoan = taiKhoan;
+    public void setUsername(String username) {
+        Username = username;
     }
 
-    public String getMatKhau() {
-        return MatKhau;
+    public String getPassword() {
+        return password;
     }
 
-    public void setMatKhau(String matKhau) {
-        MatKhau = matKhau;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
