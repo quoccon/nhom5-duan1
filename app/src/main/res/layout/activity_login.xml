@@ -40,10 +40,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:id="@+id/a_tenDN"
         app:boxCornerRadiusTopStart="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/idEmail"
+            android:id="@+id/b_tenDN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -64,15 +65,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:id="@+id/a_MK"
+        app:passwordToggleEnabled="true"
         android:layout_marginEnd="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/idPass"
+            android:id="@+id/b_MK"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:background="@drawable/khung"/>
     </com.google.android.material.textfield.TextInputLayout>
+    <CheckBox
+        android:id="@+id/chkSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Lưu Mật Khẩu"
+        android:textSize="15dp"
+        tools:ignore="TextSizeCheck" />
 
     <Button
         android:id="@+id/btnLogin"

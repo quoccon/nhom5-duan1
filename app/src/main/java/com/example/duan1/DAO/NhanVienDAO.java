@@ -57,7 +57,7 @@ public class NhanVienDAO {
         if (check == -1) {
             return false;
         } else {
-            return false;
+            return true;
         }
     }
 

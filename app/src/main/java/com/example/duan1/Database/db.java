@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class db extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "MyDatabase.db";
-    private static final int DATA_VERSION = 2;
+   private static final String DATABASE_NAME = "MyDatabase.db";
+   private static final int DATA_VERSION = 2;
 
     public db(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATA_VERSION);
@@ -16,6 +16,13 @@ public class db extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        String dbAdmin = "create table Admin(" +
+                "MaAM text primary key," +
+                "HoTen text not null," +
+                "MatKhau text not null," +
+                "Loaitaikhoan text not null)";
+        sqLiteDatabase.execSQL(dbAdmin);
+
         String dbNhanVien = "create table NhanVien(MaNv integer primary key autoincrement,tenNv text,namsinh text,Username text, password text)";
         sqLiteDatabase.execSQL(dbNhanVien);
 
@@ -34,6 +41,9 @@ public class db extends SQLiteOpenHelper {
         String dbHoaDon = "create table HoaDon(maHD integer primary key autoincrement, giodb text, ngaydb text, giokt text,ngaykt text,tongTien integer," +
                 "maKH integer references KhachHang(maKH),maLoai integer references LoaiPhong(maLoai),maPhong integer references Phong(maPhong),maDv integer references DichVu(maDv),maNv integer references NhanVien(maNv))";
         sqLiteDatabase.execSQL(dbHoaDon);
+
+
+        sqLiteDatabase.execSQL("INSERT INTO Admin VALUES ('admin','Đào Văn Vinh','1','Admin')");
 
 
 

@@ -232,11 +232,13 @@ public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienAdapter.ViewHo
         btnupdateNV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String ten = b_updateNV.getText().toString();
                 String namsinh = b_updateNSNV.getText().toString();
                 String taikhoan = b_updateTK.getText().toString();
                 String MatKhau = b_updateMK.getText().toString();
-                boolean check = dao.insert(ten, namsinh, taikhoan, MatKhau);
+
+                boolean check = dao.update(nhanVienModel.getMaNv(),ten, namsinh, taikhoan, MatKhau);
 
                 if (ten.isEmpty() || namsinh.isEmpty() || taikhoan.isEmpty() || MatKhau.isEmpty()) {
                     if (ten.equals("")) {
