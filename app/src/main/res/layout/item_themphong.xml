@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="500dp"
     android:orientation="vertical"
     android:gravity="center">
 
@@ -22,11 +22,41 @@
         android:background="#D9D9D9">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edSoP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nhập mã phòng"/>
+            android:hint="Nhập số phòng"/>
 
     </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#D9D9D9">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edGiaT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập giá tiền"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <Spinner
+
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="start"
+        android:layout_marginTop="10dp"
+        android:id="@+id/spnLoai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <Button
+        android:id="@+id/btnAddPhong"
+        android:text="Thêm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

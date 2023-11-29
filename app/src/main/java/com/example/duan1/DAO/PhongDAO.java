@@ -17,22 +17,27 @@ public class PhongDAO {
         dbHelper = new db(context);
     }
 
-//
-//    public List<PhongModel> getAllPhong() {
-//        List<PhongModel> listPhong = new ArrayList<>();
-//        SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
-//
-//        String query = "SELECT * FROM Phong";
-//        Cursor cursor = sqLiteDatabase.rawQuery(query,null);
-//
-//
-//        if (cursor.moveToFirst()){
-//            do{
-//                PhongModel phongModel = new PhongModel();
-//                phongModel.setMaPhong(cursor.getInt(cursor.getColumnIndex("maPhong")));
-//            }
-//        }
-//    }
+  public List<PhongModel> getAllPhong() {
+        List<PhongModel> listPhong = new ArrayList<>();
+
+        try (SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
+             Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM Phong", null)) {
+
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                do {
+                    listPhong.add(new PhongModel(
+                            cursor.getInt(0),
+                            cursor.getInt(1),
+                            cursor.getString(2),
+                            cursor.getString(3)
+                    ));
+                } while (cursor.moveToNext());
+            }
+        }
+
+        return listPhong;
+    }
 
 
     public long insertPhong(PhongModel phongModel){
@@ -64,9 +69,10 @@ public class PhongDAO {
     }
 
 
-    public void deletePhong(int maPhong){
+    public boolean deletePhong(int maPhong){
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
         sqLiteDatabase.delete("Phong","maPhong = ?",new String[]{String.valueOf(maPhong)});
         sqLiteDatabase.close();
+        return false;
     }
 }

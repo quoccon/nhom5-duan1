@@ -6,6 +6,25 @@ public class PhongModel {
     private String trangThai;
     private String maLoai;
 
+    private String gioBatDau;
+
+    public String getGioBatDau() {
+        return gioBatDau;
+    }
+
+    public void setGioBatDau(String gioBatDau) {
+        this.gioBatDau = gioBatDau;
+    }
+    private String gioKetThuc;
+
+    public String getGioKetThuc() {
+        return gioKetThuc;
+    }
+
+    public void setGioKetThuc(String gioKetThuc) {
+        this.gioKetThuc = gioKetThuc;
+    }
+
     public PhongModel() {
     }
 
