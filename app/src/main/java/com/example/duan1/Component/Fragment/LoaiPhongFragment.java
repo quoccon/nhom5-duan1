@@ -60,14 +60,7 @@ public class LoaiPhongFragment extends Fragment {
                 adddialog(getActivity());
             }
         });
-        lv_LP.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                item = list.get(position);
-                updateLP(getActivity());
-                return false;
-            }
-        });
+        lv_LP.
 
         return v;
     }
