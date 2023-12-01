@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -16,8 +17,12 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 import android.view.MenuItem;
+import android.view.View;
 
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.duan1.Component.Fragment.DichVuFragment;
 import com.example.duan1.Component.Fragment.DoanhThuFragment;
 import com.example.duan1.Component.Fragment.DoiMatKhauFragment;
@@ -26,22 +31,40 @@ import com.example.duan1.Component.Fragment.KhachHangFragment;
 import com.example.duan1.Component.Fragment.LoaiPhongFragment;
 import com.example.duan1.Component.Fragment.NhanVienFragment;
 import com.example.duan1.Component.Fragment.PhongFragment;
+import com.example.duan1.Component.Fragment.slide_show1;
 import com.example.duan1.Component.User.RegisterActivity;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     FragmentManager fragmentManager;
     Toolbar toolbar;
     Context context = this;
-
+    ImageSlider imageSlider;
     NavigationView navigationView;
+
+    CardView slide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        slide = findViewById(R.id.slide);
+//        imageSlider = findViewById(R.id.imageSlider);
+//        ArrayList<SlideModel> slideModels = new ArrayList<>();
+//
+//        slideModels.add(new SlideModel(R.drawable.image, ScaleTypes.FIT));
+//        slideModels.add(new SlideModel(R.drawable.delete, ScaleTypes.FIT));
+//        slideModels.add(new SlideModel(R.drawable.baseline_search_24, ScaleTypes.FIT));
+//        slideModels.add(new SlideModel(R.drawable.iconhd, ScaleTypes.FIT));
+//        slideModels.add(new SlideModel(R.drawable.iconlogout, ScaleTypes.FIT));
+//
+//        imageSlider.setImageList(slideModels, ScaleTypes.FIT);
+
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -58,7 +81,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
-        if (itemId == R.id.menuQLKH) {
+        if (itemId == R.id.slide) {
+            openFragment(new slide_show1());
+        } else if (itemId == R.id.menuQLKH) {
             openFragment(new KhachHangFragment());
         } else if (itemId == R.id.menuQLNV) {
             openFragment(new NhanVienFragment());
@@ -84,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     finish();
                 }
             });
-            builder.setNegativeButton("hủy" ,null);
+            builder.setNegativeButton("hủy", null);
             builder.create().show();
         }
 

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/slide"
+        android:icon="@drawable/img"
+        android:title="slide" />
+
+    <item
         android:id="@+id/menuQLKH"
         android:icon="@drawable/iconkh"
         android:title="Quản lý khách hàng" />

@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             if (pass.equals("")) {
-                a_MK.setError("Không được để trông mật khẩu");
+                a_MK.setError("Không được để trống mật khẩu");
             } else {
                 a_MK.setError(null);
             }
