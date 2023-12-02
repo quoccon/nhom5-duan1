@@ -85,4 +85,15 @@ public class NhanVienDAO {
         }
         return list;
     }
+
+
+    public  boolean checkLogin(String MaAM, String MatKhau) {
+        SQLiteDatabase db = DbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from NhanVien where Username = ? and password = ?", new String[]{MaAM, MatKhau});
+        if (cursor.getCount() != 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
