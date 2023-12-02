@@ -1,4 +1,5 @@
 package com.example.duan1.DAO;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,68 +12,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PhongDAO {
-    private final db dbHelper;
+    db dbheper;
 
-    public PhongDAO(Context context){
-        dbHelper = new db(context);
+    SQLiteDatabase sqLiteDatabase;
+
+    public PhongDAO(Context context) {
+        dbheper = new db(context);
+        sqLiteDatabase= dbheper.getWritableDatabase();
     }
 
-  public List<PhongModel> getAllPhong() {
-        List<PhongModel> listPhong = new ArrayList<>();
-
-        try (SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
-             Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM Phong", null)) {
-
-            if (cursor != null && cursor.getCount() > 0) {
-                cursor.moveToFirst();
-                do {
-                    listPhong.add(new PhongModel(
-                            cursor.getInt(0),
-                            cursor.getInt(1),
-                            cursor.getString(2),
-                            cursor.getString(3)
-                    ));
-                } while (cursor.moveToNext());
-            }
+    public ArrayList<PhongModel> getDSphong() {
+        ArrayList<PhongModel> list = new ArrayList<>();
+        SQLiteDatabase db = dbheper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select sc.MaSach, sc.TenSach, sc.GiaThue, ls.MaLoai, ls.HoTen from Sach sc, LoaiSach ls where sc.MaLoai = ls.MaLoai", null);
+        if (cursor.getCount() != 0) {
+            cursor.moveToFirst();
+            do {
+                list.add(new PhongModel(cursor.getInt(0), cursor.getInt(1), cursor.getString(2), cursor.getString(3)));
+            } while (cursor.moveToNext());
         }
-
-        return listPhong;
+        return list;
     }
 
-
-    public long insertPhong(PhongModel phongModel){
-        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-
+    public boolean insert(String tensach, int tienthue, int maloai) {
+        SQLiteDatabase db = dbheper.getReadableDatabase();
         ContentValues values = new ContentValues();
-        values.put("giaThue",phongModel.getGiaThue());
-        values.put("trangthai",phongModel.getTrangThai());
-        values.put("maLoai",phongModel.getMaLoai());
-
-        long id = sqLiteDatabase.insert("Phong",null,values);
-        sqLiteDatabase.close();
-        return id;
-    }
-
-
-
-    public int updatePhong(PhongModel phongModel){
-        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put("giaThue", phongModel.getGiaThue());
-        values.put("trangThai", phongModel.getTrangThai());
-        values.put("maLoai", phongModel.getMaLoai());
-
-        int rowsAffected = sqLiteDatabase.update("Phong",values,"maPhong = ?",new String[]{String.valueOf(phongModel.getMaPhong())});
-        sqLiteDatabase.close();
-        return rowsAffected;
-    }
-
-
-    public boolean deletePhong(int maPhong){
-        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-        sqLiteDatabase.delete("Phong","maPhong = ?",new String[]{String.valueOf(maPhong)});
-        sqLiteDatabase.close();
-        return false;
+        values.put("TenSach", tensach);
+        values.put("GiaThue", tienthue);
+        values.put("MaLoai", maloai);
+        long check = db.insert("Sach", null, values);
+        if (check == -1) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

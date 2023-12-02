@@ -43,7 +43,7 @@ public class PhongFragment extends Fragment {
         recyclerView = view.findViewById(R.id.rcv_Phong);
         btnAdd = view.findViewById(R.id.add_phong);
         dao = new PhongDAO(getContext());
-        loadData();
+//        loadData();
         
         
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -70,46 +70,46 @@ public class PhongFragment extends Fragment {
         ArrayAdapter<String> adapterLoai = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,roomTypes);
         spnLoai.setAdapter(adapterLoai);
 
-        btnAddPhong.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveRoom();
-                dialog.dismiss();
-            }
-        });
+//        btnAddPhong.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                saveRoom();
+//                dialog.dismiss();
+//            }
+//        });
     }
 
-    private void saveRoom() {
-    String soP = edSoP.getText().toString().trim();
-    String GiaThue = edGia.getText().toString().trim();
-    String loaiPhong = spnLoai.getSelectedItem().toString();
-
-    if (soP.isEmpty() || GiaThue.isEmpty()){
-        return;
-    }
-        int giaThue = Integer.parseInt(GiaThue);
-        PhongModel newPhong = new PhongModel();
-        newPhong.setMaPhong(Integer.parseInt(soP));
-        newPhong.setGiaThue(giaThue);
-        newPhong.setMaLoai(loaiPhong);
-        newPhong.setTrangThai(String.valueOf(0));
-
-        long results = dao.insertPhong(newPhong);
-
-        if (results > 0){
-            loadData();
-        }
-        else {
-
-        }
-
-    }
-
-    private void loadData() {
-        listPhong = (ArrayList<PhongModel>) dao.getAllPhong();
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new PhongAdapter(getContext(),listPhong);
-        recyclerView.setAdapter(adapter);
-    }
+//    private void saveRoom() {
+//    String soP = edSoP.getText().toString().trim();
+//    String GiaThue = edGia.getText().toString().trim();
+//    String loaiPhong = spnLoai.getSelectedItem().toString();
+//
+//    if (soP.isEmpty() || GiaThue.isEmpty()){
+//        return;
+//    }
+//        int giaThue = Integer.parseInt(GiaThue);
+//        PhongModel newPhong = new PhongModel();
+//        newPhong.setMaPhong(Integer.parseInt(soP));
+//        newPhong.setGiaThue(giaThue);
+//        newPhong.setMaLoai(loaiPhong);
+//        newPhong.setTrangThai(String.valueOf(0));
+//
+//        long results = dao.insertPhong(newPhong);
+//
+//        if (results > 0){
+//            loadData();
+//        }
+//        else {
+//
+//        }
+//
+//    }
+//
+//    private void loadData() {
+//        listPhong = (ArrayList<PhongModel>) dao.getAllPhong();
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+//        recyclerView.setLayoutManager(layoutManager);
+//        adapter = new PhongAdapter(getContext(),listPhong);
+//        recyclerView.setAdapter(adapter);
+//    }
 }

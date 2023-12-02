@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ImageSlider imageSlider;
     NavigationView navigationView;
 
+    View header;
+
+
     CardView slide;
 
     @Override
@@ -73,7 +76,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         fragmentManager = getSupportFragmentManager();
-
+//        fragmentManager.beginTransaction().add(R.id.fragment_container, new slide_show1());
+////        header = navigationView.getHeaderView(0);
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setTitle("slide");
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        openFragment(new slide_show1());
         navigationView = findViewById(R.id.navigation_drawer);
         navigationView.setNavigationItemSelectedListener(this);
     }
