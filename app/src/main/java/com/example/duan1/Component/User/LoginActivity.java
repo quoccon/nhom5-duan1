@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.example.duan1.DAO.AdminDAO;
+import com.example.duan1.DAO.NhanVienDAO;
 import com.example.duan1.MainActivity;
 import com.example.duan1.R;
 import com.google.android.material.textfield.TextInputEditText;
@@ -23,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     CheckBox chkSave;
 
     AdminDAO adminDAO = new AdminDAO(this);
+    NhanVienDAO nhanVienDAO = new NhanVienDAO(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                 a_MK.setError(null);
             }
         } else {
-            if (adminDAO.checkLogin(user, pass)) {
+            if (adminDAO.checkLogin(user, pass) || nhanVienDAO.checkLogin(user,pass)) {
                 Toast.makeText(this, "Login thành công", Toast.LENGTH_SHORT).show();
                 rememberUser(user, pass, chkSave.isChecked());
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
