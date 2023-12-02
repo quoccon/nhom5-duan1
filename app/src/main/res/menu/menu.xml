@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/slide"
-        android:icon="@drawable/img"
-        android:title="slide" />
+        android:icon="@drawable/baseline_home_24"
+        android:title="Trang chủ" />
 
     <item
         android:id="@+id/menuQLKH"

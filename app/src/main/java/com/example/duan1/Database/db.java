@@ -22,9 +22,16 @@ public class db extends SQLiteOpenHelper {
                 "MatKhau text not null," +
                 "Loaitaikhoan text not null)";
         sqLiteDatabase.execSQL(dbAdmin);
-
-        String dbNhanVien = "create table NhanVien(MaNv integer primary key autoincrement,tenNv text,namsinh text,Username text, password text)";
+        String dbNhanVien = "create table NhanVien(" +
+                "MaNv integer primary key," +
+                "tenNv text not null," +
+                "namsinh text not null," +
+                "Username text not null,"+
+                "password text not null)";
         sqLiteDatabase.execSQL(dbNhanVien);
+
+//        String dbNhanVien = "create table NhanVien(MaNv integer primary key autoincrement,tenNv text,namsinh text,Username text, password text)";
+//        sqLiteDatabase.execSQL(dbNhanVien);
 
         String dbLoaiPhong = "create table LoaiPhong(maLoai integer primary key autoincrement, tenLoai text)";
         sqLiteDatabase.execSQL(dbLoaiPhong);

@@ -27,14 +27,14 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/in_CurrentPassword"
+        android:id="@+id/a_MKHT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:layout_marginBottom="10dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_txtCurrentPassword"
+            android:id="@+id/b_MKHT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -42,7 +42,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/in_NewPass"
+        android:id="@+id/a_MKM"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
@@ -50,7 +50,7 @@
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_txtNewPass"
+            android:id="@+id/b_MKM"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -58,7 +58,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/in_Repass"
+        android:id="@+id/a_NLMK"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
@@ -66,7 +66,7 @@
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_txtRepass"
+            android:id="@+id/b_NLMK"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -82,7 +82,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_SaveMK"
+            android:id="@+id/btn_save"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginRight="10dp"
