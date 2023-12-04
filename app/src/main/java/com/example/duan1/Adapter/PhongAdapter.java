@@ -69,7 +69,7 @@ public class PhongAdapter extends RecyclerView.Adapter<PhongAdapter.ViewHolder> 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                diglogupdateNhanVien(P);
+                diglogupdatePhong(P);
                 return false;
             }
         });
@@ -83,6 +83,7 @@ public class PhongAdapter extends RecyclerView.Adapter<PhongAdapter.ViewHolder> 
                 builder.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        phongDAO = new PhongDAO(context);
                         int check = phongDAO.delete(list.get(holder.getAdapterPosition()).getMaPhong());
                         switch (check){
                             case 1:
@@ -140,13 +141,14 @@ public class PhongAdapter extends RecyclerView.Adapter<PhongAdapter.ViewHolder> 
         notifyDataSetChanged();
     }
 
-    private void diglogupdateNhanVien(PhongModel phongModel) {
-        android.app.AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+    private void diglogupdatePhong(PhongModel phongModel) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.update_phong, null);
         builder.setView(view);
-        Dialog dialog = builder.create();
+        AlertDialog dialog = builder.create();
         dialog.show();
+
         TextInputLayout a_updateGT = view.findViewById(R.id.a_updateGT);
         TextInputEditText b_updateGT = view.findViewById(R.id.b_updateGT);
         TextInputLayout a_updateNBD = view.findViewById(R.id.a_updateNBD);
@@ -155,115 +157,54 @@ public class PhongAdapter extends RecyclerView.Adapter<PhongAdapter.ViewHolder> 
         TextInputEditText b_updateNKT = view.findViewById(R.id.b_updateNKT);
         Button btnupdateNV = view.findViewById(R.id.updatephong);
 
-        b_updateNKT.setText(Integer.valueOf(phongModel.getGiaThue()));
+        b_updateGT.setText(String.valueOf(phongModel.getGiaThue()));
         b_updateNBD.setText(phongModel.getTrangThai());
-        b_updateGT.setText(phongModel.getMaPhong());
-
-
-        b_updateGT.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() == 0) {
-                    a_updateGT.setError("vui lòng nhập tên nhân viên");
-                } else {
-                    a_updateGT.setError(null);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-        b_updateNBD.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() == 0) {
-                    a_updateNBD.setError("vui lòng nhập năm sinh");
-                } else {
-                    a_updateNBD.setError(null);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-        b_updateNKT.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() == 0) {
-                    a_updateNKT.setError("vui lòng nhập tài khoản");
-                } else {
-                    a_updateNKT.setError(null);
-
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+        b_updateNKT.setText(phongModel.getMaLoai());
 
         btnupdateNV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String giaThue = b_updateGT.getText().toString();
                 String trangThai = b_updateNBD.getText().toString();
                 String maLoai = b_updateNKT.getText().toString();
-                PhongModel phongModel = new PhongModel();
-                phongModel.setGiaThue(Integer.valueOf(giaThue));
+
+                if (giaThue.isEmpty()) {
+                    a_updateGT.setError("Vui lòng nhập giá thuê");
+                    return;
+                } else {
+                    a_updateGT.setError(null);
+                }
+
+                if (trangThai.isEmpty()) {
+                    a_updateNBD.setError("Vui lòng nhập trạng thái");
+                    return;
+                } else {
+                    a_updateNBD.setError(null);
+                }
+
+                if (maLoai.isEmpty()) {
+                    a_updateNKT.setError("Vui lòng nhập mã loại");
+                    return;
+                } else {
+                    a_updateNKT.setError(null);
+                }
+
+                phongModel.setGiaThue(Integer.parseInt(giaThue));
                 phongModel.setTrangThai(trangThai);
                 phongModel.setMaLoai(maLoai);
+
+                phongDAO = new PhongDAO(context);
                 boolean check = phongDAO.update(phongModel);
 
-                if (giaThue.isEmpty() || trangThai.isEmpty() || maLoai.isEmpty()) {
-                    if (giaThue.equals("")) {
-                        a_updateGT.setError("vui lòng nhập đầy đủ tên nhân viên ");
-                    } else {
-                        a_updateGT.setError(null);
-                    }
-                    if (trangThai.equals("")) {
-                        a_updateNBD.setError("vui lòng nhập đầy đủ năm sinh");
-                    } else {
-                        a_updateNBD.setError(null);
-                    }
-                    if (maLoai.equals("")) {
-                        a_updateNKT.setError("vui lòng nhập tài khoản");
-                    } else {
-                        a_updateNKT.setError(null);
-                    }
+                if (check) {
+                    loadData();
+                    Toast.makeText(context, "Cập nhật phòng thành công", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
                 } else {
-                    if (check) {
-                        loadData();
-                        Toast.makeText(context, "thêm nhân viên thành công", Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    } else {
-                        Toast.makeText(context, "thêm nhân viên thất bại", Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(context, "Cập nhật phòng thất bại", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
     }
 
 
