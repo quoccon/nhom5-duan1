@@ -1,6 +1,7 @@
 package com.example.duan1.Database;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -13,6 +14,9 @@ public class db extends SQLiteOpenHelper {
     public db(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATA_VERSION);
     }
+
+
+
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {

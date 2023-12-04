@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.duan1.Database.db;
 import com.example.duan1.Model.LoaiPhongModel;
@@ -13,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoaiPhongDAO {
+
+
 
      SQLiteDatabase data;
 
@@ -58,4 +61,21 @@ public class LoaiPhongDAO {
         }
         return list;
     }
+
+    public String getTen(String maloai) {
+        LoaiPhongModel obj = new LoaiPhongModel();
+        Cursor cursor = data.rawQuery("select * from LoaiPhong where maLoai =? ",new String[]{maloai});
+        while (cursor.moveToNext()) {
+
+            obj.setMaLoai(Integer.parseInt(cursor.getString(0)));
+            obj.setTenLoai(cursor.getString(1));
+            Log.e("TAG", "getTen: "+obj.getTenLoai() );
+
+        }
+        return obj.getTenLoai();
+    }
+
+
+
+
 }

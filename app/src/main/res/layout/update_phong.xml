@@ -9,7 +9,7 @@
         android:layout_width="340dp"
         android:layout_height="90dp"
         android:background="#20C1C1"
-        android:text="THÊM PHÒNG"
+        android:text="UPDATE PHÒNG"
         android:gravity="center"
         android:textSize="30dp"
         android:textColor="@color/black" />
@@ -20,36 +20,36 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="10dp"
-        android:id="@+id/a_addGT">
+        android:id="@+id/a_updateGT">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="nhập giá thuê"
-            android:id="@+id/b_addGT"/>
+            android:id="@+id/b_updateGT"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="10dp"
-        android:id="@+id/a_addNBD">
+        android:id="@+id/a_updateNBD">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="nhập trạng thái"
-            android:id="@+id/b_addNBD"/>
+            android:id="@+id/b_updateNBD"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="10dp"
-        android:id="@+id/a_addNKT">
+        android:id="@+id/a_updateNKT">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="nhập ma loại"
-            android:id="@+id/b_addNKT"/>
+            android:id="@+id/b_updateNKT"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
@@ -68,7 +68,7 @@
             android:textColor="#FDED00"
             android:backgroundTint="#A32323"
             android:textSize="17dp"
-            android:id="@+id/addphong"/>
+            android:id="@+id/updatephong"/>
 
     </LinearLayout>
 

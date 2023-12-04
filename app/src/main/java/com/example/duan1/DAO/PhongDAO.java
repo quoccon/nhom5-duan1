@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.duan1.Database.db;
+import com.example.duan1.Model.NhanVienModel;
 import com.example.duan1.Model.PhongModel;
 
 import java.util.ArrayList;
@@ -18,33 +19,68 @@ public class PhongDAO {
 
     public PhongDAO(Context context) {
         dbheper = new db(context);
-        sqLiteDatabase= dbheper.getWritableDatabase();
+
+
+
     }
 
-    public ArrayList<PhongModel> getDSphong() {
+    public ArrayList<PhongModel> getphongModel() {
         ArrayList<PhongModel> list = new ArrayList<>();
         SQLiteDatabase db = dbheper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select sc.MaSach, sc.TenSach, sc.GiaThue, ls.MaLoai, ls.HoTen from Sach sc, LoaiSach ls where sc.MaLoai = ls.MaLoai", null);
+        Cursor cursor = db.rawQuery("select * from Phong", null);
         if (cursor.getCount() != 0) {
-            cursor.moveToFirst();
+            cursor.moveToNext();
             do {
-                list.add(new PhongModel(cursor.getInt(0), cursor.getInt(1), cursor.getString(2), cursor.getString(3)));
+                list.add(new PhongModel(cursor.getInt(0),cursor.getInt(1),cursor.getString(2),cursor.getString(3)));
             } while (cursor.moveToNext());
         }
         return list;
     }
-
-    public boolean insert(String tensach, int tienthue, int maloai) {
-        SQLiteDatabase db = dbheper.getReadableDatabase();
+    public boolean insert(PhongModel phongModel) {
+        SQLiteDatabase db =dbheper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("TenSach", tensach);
-        values.put("GiaThue", tienthue);
-        values.put("MaLoai", maloai);
-        long check = db.insert("Sach", null, values);
+        values.put("giaThue", phongModel.getGiaThue());
+        values.put("trangThai",phongModel.getTrangThai());
+        values.put("maloai", phongModel.getMaLoai());
+
+        long check = db.insert("Phong", null, values);
         if (check == -1) {
             return false;
         } else {
             return true;
         }
     }
+    public boolean update(PhongModel phongModel) {
+        SQLiteDatabase db = dbheper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("giaThue", phongModel.getGiaThue());
+        values.put("trangThai",phongModel.getTrangThai());
+        values.put("maloai", phongModel.getMaLoai());
+
+        long check = db.update("Phong", values, "maPhong =?", new String[]{String.valueOf(phongModel.getMaPhong())});
+        if (check == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public int delete(int maPhong){
+        SQLiteDatabase db = dbheper.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from HoaDon where maPhong = ?",new String[]{String.valueOf(maPhong)});
+        if(cursor.getCount() != 0){
+            return -1;
+        }
+
+        long check = db.delete("Phong","maPhong = ?", new String[]{String.valueOf(maPhong)});
+        if(check == -1){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+
+
+
+
+
 }
