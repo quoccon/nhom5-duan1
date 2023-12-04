@@ -86,8 +86,32 @@ public class PhongFragment extends Fragment {
         TextInputEditText b_addNBD = view.findViewById(R.id.b_addNBD);
         TextInputLayout a_addNKT = view.findViewById(R.id.a_addNKT);
         TextInputEditText b_addNKT = view.findViewById(R.id.b_addNKT);
+        TextInputLayout a_tenP = view.findViewById(R.id.a_addTenP);
+        TextInputEditText b_tenP = view.findViewById(R.id.b_addTenP);
 
         Button btnaddnv = view.findViewById(R.id.addphong);
+
+        b_tenP.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length()==0){
+                    a_tenP.setError("vui lòng nhập tên phòng");
+                }else {
+                    a_tenP.setError(null);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         b_addGT.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -157,13 +181,15 @@ public class PhongFragment extends Fragment {
                 String giaThue = b_addGT.getText().toString();
                 String trangThai = b_addNBD.getText().toString();
                 String maLoai = b_addNKT.getText().toString();
+                String tenP = b_tenP.getText().toString();
                 PhongModel phongModel = new PhongModel();
                 phongModel.setGiaThue(Integer.parseInt(giaThue));
                 phongModel.setTrangThai(trangThai);
                 phongModel.setMaLoai(maLoai);
+                phongModel.setTenPhong(tenP);
                 boolean check = dao.insert( phongModel);
 
-                if (giaThue.isEmpty() || trangThai.isEmpty() || maLoai.isEmpty()) {
+                if (giaThue.isEmpty() || trangThai.isEmpty() || maLoai.isEmpty()|| tenP.isEmpty()) {
                     if (giaThue.equals("")) {
                         a_addGT.setError("vui lòng nhập đầy đủ tên nhân viên ");
                     } else {
@@ -178,6 +204,10 @@ public class PhongFragment extends Fragment {
                         a_addNKT.setError("vui lòng nhập tài khoản");
                     } else {
                         a_addNKT.setError(null);
+                    }if (tenP.equals("")){
+                        a_tenP.setError("vui lòng tên phòng");
+                    }else {
+                        a_tenP.setError(null);
                     }
                 } else {
                     if (check) {

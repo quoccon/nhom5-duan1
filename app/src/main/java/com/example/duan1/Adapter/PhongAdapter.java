@@ -62,6 +62,7 @@ public class PhongAdapter extends RecyclerView.Adapter<PhongAdapter.ViewHolder> 
         holder.txtMaPhong.setText(String.valueOf(list.get(position).getMaPhong()));
         holder.txtGia.setText(String.valueOf(list.get(position).getGiaThue()));
         holder.txtTrangThai.setText(list.get(position).getTrangThai());
+        holder.txtTenP.setText(list.get(position).getTenPhong());
 
         PhongModel P = list.get(position);
 
@@ -121,7 +122,7 @@ public class PhongAdapter extends RecyclerView.Adapter<PhongAdapter.ViewHolder> 
 
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txtLoai, txtMaPhong, txtGia, txtTrangThai;
+        TextView txtLoai, txtMaPhong, txtGia, txtTrangThai ,txtTenP;
         ImageView imgDele;
 
         public ViewHolder(@NonNull View itemView) {
@@ -131,6 +132,7 @@ public class PhongAdapter extends RecyclerView.Adapter<PhongAdapter.ViewHolder> 
             txtMaPhong = itemView.findViewById(R.id.txtMaP);
             txtGia = itemView.findViewById(R.id.txtGia);
             txtTrangThai = itemView.findViewById(R.id.txtTrangThai);
+            txtTenP = itemView.findViewById(R.id.txtTenPhong);
             imgDele = itemView.findViewById(R.id.imgDele);
         }
     }
@@ -155,11 +157,15 @@ public class PhongAdapter extends RecyclerView.Adapter<PhongAdapter.ViewHolder> 
         TextInputEditText b_updateNBD = view.findViewById(R.id.b_updateNBD);
         TextInputLayout a_updateNKT = view.findViewById(R.id.a_updateNKT);
         TextInputEditText b_updateNKT = view.findViewById(R.id.b_updateNKT);
+        TextInputLayout a_updateTenP = view.findViewById(R.id.a_updateTenP);
+        TextInputEditText b_updateTenP = view.findViewById(R.id.b_updateTenP);
+
         Button btnupdateNV = view.findViewById(R.id.updatephong);
 
         b_updateGT.setText(String.valueOf(phongModel.getGiaThue()));
         b_updateNBD.setText(phongModel.getTrangThai());
         b_updateNKT.setText(phongModel.getMaLoai());
+        b_updateTenP.setText(phongModel.getTenPhong());
 
         btnupdateNV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,6 +173,7 @@ public class PhongAdapter extends RecyclerView.Adapter<PhongAdapter.ViewHolder> 
                 String giaThue = b_updateGT.getText().toString();
                 String trangThai = b_updateNBD.getText().toString();
                 String maLoai = b_updateNKT.getText().toString();
+                String tenP = b_updateTenP.getText().toString();
 
                 if (giaThue.isEmpty()) {
                     a_updateGT.setError("Vui lòng nhập giá thuê");
@@ -188,10 +195,17 @@ public class PhongAdapter extends RecyclerView.Adapter<PhongAdapter.ViewHolder> 
                 } else {
                     a_updateNKT.setError(null);
                 }
+                if (tenP.isEmpty()){
+                    a_updateTenP.setError("vui lòng nhập tên phòng");
+                    return;
+                }else {
+                    a_updateTenP.setError(null);
+                }
 
                 phongModel.setGiaThue(Integer.parseInt(giaThue));
                 phongModel.setTrangThai(trangThai);
                 phongModel.setMaLoai(maLoai);
+                phongModel.setTenPhong(tenP);
 
                 phongDAO = new PhongDAO(context);
                 boolean check = phongDAO.update(phongModel);

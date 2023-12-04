@@ -31,7 +31,7 @@ public class PhongDAO {
         if (cursor.getCount() != 0) {
             cursor.moveToNext();
             do {
-                list.add(new PhongModel(cursor.getInt(0),cursor.getInt(1),cursor.getString(2),cursor.getString(3)));
+                list.add(new PhongModel(cursor.getInt(0),cursor.getInt(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5)));
             } while (cursor.moveToNext());
         }
         return list;
@@ -42,6 +42,7 @@ public class PhongDAO {
         values.put("giaThue", phongModel.getGiaThue());
         values.put("trangThai",phongModel.getTrangThai());
         values.put("maloai", phongModel.getMaLoai());
+        values.put("TenPhong",phongModel.getTenPhong());
 
         long check = db.insert("Phong", null, values);
         if (check == -1) {
@@ -56,6 +57,7 @@ public class PhongDAO {
         values.put("giaThue", phongModel.getGiaThue());
         values.put("trangThai",phongModel.getTrangThai());
         values.put("maloai", phongModel.getMaLoai());
+        values.put("TenPhong",phongModel.getTenPhong());
 
         long check = db.update("Phong", values, "maPhong =?", new String[]{String.valueOf(phongModel.getMaPhong())});
         if (check == -1) {

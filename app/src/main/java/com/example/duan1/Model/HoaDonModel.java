@@ -14,6 +14,9 @@ public class HoaDonModel {
     private int maNv;
 
     public HoaDonModel() {
+    }
+
+    public HoaDonModel(int maHd, String ngaydb, String ngaykt, String giodb, String giokt, int tongTien, int maKH, int maLoai, int maPhong, int maDv, int maNv) {
         this.maHd = maHd;
         this.ngaydb = ngaydb;
         this.ngaykt = ngaykt;
@@ -26,8 +29,6 @@ public class HoaDonModel {
         this.maDv = maDv;
         this.maNv = maNv;
     }
-
-
 
     public int getMaHd() {
         return maHd;
