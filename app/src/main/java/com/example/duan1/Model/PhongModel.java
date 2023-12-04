@@ -8,19 +8,18 @@ public class PhongModel {
 
     private String TenPhong;
 
-    private String gioBatDau;
+
 
 
     public PhongModel() {
     }
 
-    public PhongModel(int maPhong, int giaThue, String trangThai, String maLoai, String tenPhong, String gioBatDau) {
+    public PhongModel(int maPhong, int giaThue, String trangThai, String maLoai, String tenPhong) {
         this.maPhong = maPhong;
         this.giaThue = giaThue;
         this.trangThai = trangThai;
         this.maLoai = maLoai;
-        TenPhong = tenPhong;
-        this.gioBatDau = gioBatDau;
+        this.TenPhong = tenPhong;
     }
 
     public int getMaPhong() {
@@ -61,13 +60,5 @@ public class PhongModel {
 
     public void setTenPhong(String tenPhong) {
         TenPhong = tenPhong;
-    }
-
-    public String getGioBatDau() {
-        return gioBatDau;
-    }
-
-    public void setGioBatDau(String gioBatDau) {
-        this.gioBatDau = gioBatDau;
     }
 }
