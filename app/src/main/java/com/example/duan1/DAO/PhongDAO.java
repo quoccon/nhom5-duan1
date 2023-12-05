@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.duan1.Database.db;
 import com.example.duan1.Model.NhanVienModel;
@@ -15,7 +16,7 @@ import java.util.List;
 public class PhongDAO {
     db dbheper;
 
-    SQLiteDatabase sqLiteDatabase;
+    SQLiteDatabase data;
 
     public PhongDAO(Context context) {
         dbheper = new db(context);
@@ -81,8 +82,24 @@ public class PhongDAO {
         }
     }
 
+    public String getTen(String maPhong) {
+        PhongModel obj = new PhongModel();
+        Cursor cursor = data.rawQuery("select * from Phong where maPhong =? ",new String[]{maPhong});
+        while (cursor.moveToNext()) {
 
+            obj.setMaPhong(Integer.parseInt(cursor.getString(0)));
+            obj.setTenPhong(cursor.getString(1));
+            Log.e("TAG", "getTen: "+obj.getTenPhong() );
 
-
-
+        }
+        return obj.getTenPhong();
+    }
 }
+
+
+
+
+
+
+
+

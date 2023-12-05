@@ -5,10 +5,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.duan1.Database.db;
 import com.example.duan1.Model.DichVuModel;
 import com.example.duan1.Model.LoaiPhongModel;
+import com.example.duan1.Model.NhanVienModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,4 +66,18 @@ public class DichVuDAO {
         }
         return list;
     }
+
+    public String getTen(String maDv) {
+        DichVuModel obj = new DichVuModel();
+        Cursor cursor = data.rawQuery("select * from DichVu where maDv =? ",new String[]{maDv});
+        while (cursor.moveToNext()) {
+
+            obj.setMaDV(Integer.parseInt(cursor.getString(0)));
+            obj.setTenDV(cursor.getString(1));
+            Log.e("TAG", "getTen: "+obj.getTenDV() );
+
+        }
+        return obj.getTenDV();
+    }
 }
+

@@ -2,26 +2,23 @@ package com.example.duan1.Model;
 
 public class HoaDonModel {
     private int maHd;
-    private String ngaydb;
-    private String ngaykt;
-    private String giodb;
-    private String giokt;
+    private String ThoiGianBD;
+    private String ThoiGianKT;
+
     private int tongTien;
-    private int maKH;
-    private int maLoai;
-    private int maPhong;
-    private int maDv;
-    private int maNv;
+    private String maKH;
+    private String maLoai;
+    private String maPhong;
+    private String maDv;
+    private String maNv;
 
     public HoaDonModel() {
     }
 
-    public HoaDonModel(int maHd, String ngaydb, String ngaykt, String giodb, String giokt, int tongTien, int maKH, int maLoai, int maPhong, int maDv, int maNv) {
+    public HoaDonModel(int maHd, String thoiGianBD, String thoiGianKT, int tongTien, String maKH, String maLoai, String maPhong, String maDv, String maNv) {
         this.maHd = maHd;
-        this.ngaydb = ngaydb;
-        this.ngaykt = ngaykt;
-        this.giodb = giodb;
-        this.giokt = giokt;
+        ThoiGianBD = thoiGianBD;
+        ThoiGianKT = thoiGianKT;
         this.tongTien = tongTien;
         this.maKH = maKH;
         this.maLoai = maLoai;
@@ -38,36 +35,20 @@ public class HoaDonModel {
         this.maHd = maHd;
     }
 
-    public String getNgaydb() {
-        return ngaydb;
+    public String getThoiGianBD() {
+        return ThoiGianBD;
     }
 
-    public void setNgaydb(String ngaydb) {
-        this.ngaydb = ngaydb;
+    public void setThoiGianBD(String thoiGianBD) {
+        ThoiGianBD = thoiGianBD;
     }
 
-    public String getNgaykt() {
-        return ngaykt;
+    public String getThoiGianKT() {
+        return ThoiGianKT;
     }
 
-    public void setNgaykt(String ngaykt) {
-        this.ngaykt = ngaykt;
-    }
-
-    public String getGiodb() {
-        return giodb;
-    }
-
-    public void setGiodb(String giodb) {
-        this.giodb = giodb;
-    }
-
-    public String getGiokt() {
-        return giokt;
-    }
-
-    public void setGiokt(String giokt) {
-        this.giokt = giokt;
+    public void setThoiGianKT(String thoiGianKT) {
+        ThoiGianKT = thoiGianKT;
     }
 
     public int getTongTien() {
@@ -78,43 +59,43 @@ public class HoaDonModel {
         this.tongTien = tongTien;
     }
 
-    public int getMaKH() {
+    public String getMaKH() {
         return maKH;
     }
 
-    public void setMaKH(int maKH) {
+    public void setMaKH(String maKH) {
         this.maKH = maKH;
     }
 
-    public int getMaLoai() {
+    public String getMaLoai() {
         return maLoai;
     }
 
-    public void setMaLoai(int maLoai) {
+    public void setMaLoai(String maLoai) {
         this.maLoai = maLoai;
     }
 
-    public int getMaPhong() {
+    public String getMaPhong() {
         return maPhong;
     }
 
-    public void setMaPhong(int maPhong) {
+    public void setMaPhong(String maPhong) {
         this.maPhong = maPhong;
     }
 
-    public int getMaDv() {
+    public String getMaDv() {
         return maDv;
     }
 
-    public void setMaDv(int maDv) {
+    public void setMaDv(String maDv) {
         this.maDv = maDv;
     }
 
-    public int getMaNv() {
+    public String getMaNv() {
         return maNv;
     }
 
-    public void setMaNv(int maNv) {
+    public void setMaNv(String maNv) {
         this.maNv = maNv;
     }
 }

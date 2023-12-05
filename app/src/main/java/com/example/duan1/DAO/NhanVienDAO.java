@@ -5,8 +5,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.duan1.Database.db;
+import com.example.duan1.Model.LoaiPhongModel;
 import com.example.duan1.Model.NhanVienModel;
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 public class NhanVienDAO {
     db DbHelper;
 
+    SQLiteDatabase data;
     public NhanVienDAO(Context context) {
         DbHelper = new db(context);
     }
@@ -95,5 +98,18 @@ public class NhanVienDAO {
         } else {
             return false;
         }
+    }
+
+    public String getTen(String MaNv) {
+        NhanVienModel obj = new NhanVienModel();
+        Cursor cursor = data.rawQuery("select * from NhanVien where MaNv =? ",new String[]{MaNv});
+        while (cursor.moveToNext()) {
+
+            obj.setMaNv(Integer.parseInt(cursor.getString(0)));
+            obj.setTenNv(cursor.getString(1));
+            Log.e("TAG", "getTen: "+obj.getTenNv() );
+
+        }
+        return obj.getTenNv();
     }
 }

@@ -10,14 +10,36 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.duan1.DAO.DichVuDAO;
+import com.example.duan1.DAO.HoaDonDAO;
+import com.example.duan1.DAO.KhachHangDAO;
+import com.example.duan1.DAO.LoaiPhongDAO;
+import com.example.duan1.DAO.NhanVienDAO;
+import com.example.duan1.DAO.PhongDAO;
 import com.example.duan1.Model.HoaDonModel;
 import com.example.duan1.R;
 
 import java.util.ArrayList;
+import java.util.StringJoiner;
 
 public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder> {
     private Context context;
     private ArrayList<HoaDonModel> hoaDonList;
+
+    HoaDonDAO hoaDonDAO;
+
+    LoaiPhongDAO loaiPhongDAO;
+
+    KhachHangDAO khachHangDAO;
+
+    DichVuDAO dichVuDAO;
+
+    NhanVienDAO nhanVienDAO;
+
+    PhongDAO phongDAO;
+
+
+
 
     public HoaDonAdapter(Context context, ArrayList<HoaDonModel> hoaDonList) {
         this.context = context;
@@ -33,11 +55,34 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        HoaDonModel hoaDon = hoaDonList.get(position);
+        holder.txtBd.setText(hoaDonList.get(position).getThoiGianBD());
+        holder.txtKt.setText(hoaDonList.get(position).getThoiGianKT());
+        holder.txtmahd.setText(String.valueOf(hoaDonList.get(position).getMaHd()));
+        holder.txtTongtien.setText(String.valueOf(hoaDonList.get(position).getTongTien()));
+        holder.txttenkh.setText(getMaKhachHang(hoaDonList.get(position).getMaKH()));
+        holder.txtloaiphong.setText(getLoaiPhong(hoaDonList.get(position).getMaLoai()));
+        holder.txtmaphong.setText(getmaPhong(hoaDonList.get(position).getMaPhong()));
+        holder.txtDv.setText(getDichVu(hoaDonList.get(position).getMaDv()));
+//        holder.txt.setText(getNhanVien(hoaDonList.get(position).getMaNv()));
 
 
-        holder.txtmahd.setText(hoaDon.getMaHd());
 
+    }
+
+    private String getDichVu(String maDv) {
+        return dichVuDAO.getTen(maDv);
+    }
+
+    private String getmaPhong(String maPhong) {
+        return phongDAO.getTen(maPhong);
+    }
+
+    private String getLoaiPhong(String maLoai) {
+        return loaiPhongDAO.getTen(maLoai);
+    }
+
+    private String getMaKhachHang(String maKH) {
+        return khachHangDAO.getTen(maKH);
     }
 
     @Override

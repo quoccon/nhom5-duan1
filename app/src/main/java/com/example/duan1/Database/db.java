@@ -49,8 +49,8 @@ public class db extends SQLiteOpenHelper {
         String dbDichVu = "create table DichVu(maDv integer primary key autoincrement, tendV text, giatien integer, mota text)";
         sqLiteDatabase.execSQL(dbDichVu);
 
-        String dbHoaDon = "create table HoaDon(maHD integer primary key autoincrement, giodb text, ngaydb text, giokt text,ngaykt text,tongTien integer," +
-                "maKH integer references KhachHang(maKH),maLoai integer references LoaiPhong(maLoai),maPhong integer references Phong(maPhong),maDv integer references DichVu(maDv),maNv integer references NhanVien(maNv))";
+        String dbHoaDon = "create table HoaDon(maHD integer primary key autoincrement, ThoiGianBD text, ThoiGianKT text, tongTien integer," +
+                "maKH text references KhachHang(maKH),maLoai text references LoaiPhong(maLoai),maPhong text references Phong(maPhong),maDv text references DichVu(maDv),maNv text references NhanVien(maNv))";
         sqLiteDatabase.execSQL(dbHoaDon);
 
 
