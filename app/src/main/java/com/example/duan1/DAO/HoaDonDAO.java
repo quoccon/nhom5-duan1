@@ -8,12 +8,13 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.duan1.Database.db;
 import com.example.duan1.Model.HoaDonModel;
 import com.example.duan1.Model.NhanVienModel;
+import com.example.duan1.Model.PhongModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HoaDonDAO {
-    private final db dbHelper;
+     db dbHelper;
 
     SQLiteDatabase db;
 
@@ -29,9 +30,9 @@ public class HoaDonDAO {
             cursor.moveToNext();
             do {
                 list.add(new HoaDonModel(cursor.getInt(0),
-                        cursor.getString(1),cursor.getString(2),cursor.getInt(3),
-                        cursor.getString(4),cursor.getString(5),
-                        cursor.getString(6),cursor.getString(7),cursor.getString(8)));
+                        cursor.getString(6),cursor.getString(5),cursor.getInt(1),
+                        cursor.getString(2),cursor.getString(4),
+                        cursor.getString(3),cursor.getString(4),cursor.getString(2)));
             } while (cursor.moveToNext());
         }
         return list;
@@ -41,13 +42,13 @@ public class HoaDonDAO {
         SQLiteDatabase db =dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("ThoiGianBD", hoaDonModel.getThoiGianBD());
-        values.put("ThoiGianKT", hoaDonModel.getThoiGianKT());
+        values.put("ThoiGianKT",hoaDonModel.getThoiGianKT());
         values.put("tongTien", hoaDonModel.getTongTien());
-        values.put("maKH", hoaDonModel.getMaKH());
-        values.put("maLoai", hoaDonModel.getMaLoai());
-        values.put("maPhong", hoaDonModel.getMaPhong());
-        values.put("maDv", hoaDonModel.getMaDv());
-        values.put("maNv", hoaDonModel.getMaNv());
+        values.put("maKH",hoaDonModel.getMaKH());
+        values.put("maLoai",hoaDonModel.getMaLoai());
+        values.put("maPhong",hoaDonModel.getMaPhong());
+        values.put("maDv",hoaDonModel.getMaDv());
+        values.put("maNv",hoaDonModel.getMaNv());
 
         long check = db.insert("HoaDon", null, values);
         if (check == -1) {

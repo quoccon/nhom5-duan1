@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 
 public class db extends SQLiteOpenHelper {
    private static final String DATABASE_NAME = "MyDatabase.db";
-   private static final int DATA_VERSION = 2;
+   private static final int DATA_VERSION = 5;
 
     public db(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATA_VERSION);
@@ -49,8 +49,8 @@ public class db extends SQLiteOpenHelper {
         String dbDichVu = "create table DichVu(maDv integer primary key autoincrement, tendV text, giatien integer, mota text)";
         sqLiteDatabase.execSQL(dbDichVu);
 
-        String dbHoaDon = "create table HoaDon(maHD integer primary key autoincrement, ThoiGianBD text, ThoiGianKT text, tongTien integer," +
-                "maKH text references KhachHang(maKH),maLoai text references LoaiPhong(maLoai),maPhong text references Phong(maPhong),maDv text references DichVu(maDv),maNv text references NhanVien(maNv))";
+        String dbHoaDon = "create table HoaDon(maHD integer primary key autoincrement,  tongTien integer," +
+                "maKH text references KhachHang(maKH),maLoai text references LoaiPhong(maLoai),maPhong text references Phong(maPhong),maDv text references DichVu(maDv),maNv text references NhanVien(maNv),ThoiGianBD text, ThoiGianKT text)";
         sqLiteDatabase.execSQL(dbHoaDon);
 
 
@@ -69,6 +69,7 @@ public class db extends SQLiteOpenHelper {
             sqLiteDatabase.execSQL("drop table if exists KhachHang");
             sqLiteDatabase.execSQL("drop table if exists DichVu");
             sqLiteDatabase.execSQL("drop table if exists HoaDon");
+            sqLiteDatabase.execSQL("drop table if exists Admin");
             onCreate(sqLiteDatabase);
         }
     }

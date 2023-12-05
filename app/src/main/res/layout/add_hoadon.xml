@@ -21,18 +21,18 @@
             android:gravity="center"
             android:textSize="30dp"
             android:textColor="@color/black" />
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="10dp"
-            android:id="@+id/a_addTGBD">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="nhập thời gian bắt đầu"
-                android:id="@+id/b_addTGBD"/>
-        </com.google.android.material.textfield.TextInputLayout>
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginHorizontal="10dp"-->
+<!--            android:id="@+id/a_addTGBD">-->
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="nhập ma nhân viên"-->
+<!--                android:id="@+id/b_addTGBD"/>-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="nhập thời gian kết thúc"
+                android:hint="nhập ma dịch vụ"
                 android:id="@+id/b_addTGKT"/>
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -102,7 +102,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="nhập ma dịch vụ"
+                android:hint="nhập thời gian kết thúc"
                 android:id="@+id/b_addMDV"/>
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -114,9 +114,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="nhập ma nhân viên"
+                android:hint="nhập thời gian bắt đầu"
                 android:id="@+id/b_addMNV"/>
         </com.google.android.material.textfield.TextInputLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -20,6 +20,7 @@ public class PhongDAO {
 
     public PhongDAO(Context context) {
         dbheper = new db(context);
+        data = dbheper.getWritableDatabase();
 
 
 

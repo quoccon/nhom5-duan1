@@ -5,70 +5,141 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="340dp"
-        android:layout_height="90dp"
-        android:background="#20C1C1"
-        android:text="UPDATE HÓA ĐƠN"
-        android:gravity="center"
-        android:textSize="30dp"
-        android:textColor="@color/black" />
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="10dp"
-        android:id="@+id/a_updateTGGBD">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="nhập thời gian bắt đầu"
-            android:id="@+id/b_updateTGGBD"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="10dp"
-        android:id="@+id/a_updateTGKT">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="nhập thời gian kết thúc"
-            android:id="@+id/b_updateTGKT"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="10dp"
-        android:id="@+id/a_updateTT">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="nhập tổng tiền"
-            android:id="@+id/b_updateTT"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-        <Button
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:text="THÊM"
-            android:textStyle="bold"
-            android:layout_marginRight="10dp"
-            android:textColor="#FDED00"
-            android:backgroundTint="#A32323"
-            android:textSize="17dp"
-            android:id="@+id/updateHD"/>
 
-    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:background="#20C1C1"
+                android:text="UPDATE HOÁ ĐƠN"
+                android:gravity="center"
+                android:textSize="30dp"
+                android:textColor="@color/black" />
+            <!--        <com.google.android.material.textfield.TextInputLayout-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginTop="10dp"-->
+            <!--            android:layout_marginHorizontal="10dp"-->
+            <!--            android:id="@+id/a_addTGBD">-->
+            <!--            <com.google.android.material.textfield.TextInputEditText-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:hint="nhập ma nhân viên"-->
+            <!--                android:id="@+id/b_addTGBD"/>-->
+            <!--        </com.google.android.material.textfield.TextInputLayout>-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/a_updateTGKT">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="nhập ma dịch vụ"
+                    android:id="@+id/b_updateTGKT"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/a_updateTT">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="nhập tổng tiền"
+                    android:id="@+id/b_updateTT"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/a_updateMKH">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="nhập ma khách hàng"
+                    android:id="@+id/b_updateMKH"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/a_updateML">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="nhập ma loại"
+                    android:id="@+id/b_updateML"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/a_updateMP">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="nhập ma phong"
+                    android:id="@+id/b_updateMP"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/a_updateMDV">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="nhập thời gian kết thúc"
+                    android:id="@+id/b_updateMDV"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/a_updateMNV">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="nhập thời gian bắt đầu"
+                    android:id="@+id/b_updateMNV"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <Button
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="UPDATE"
+                    android:textStyle="bold"
+                    android:layout_marginRight="10dp"
+                    android:textColor="#FDED00"
+                    android:backgroundTint="#A32323"
+                    android:textSize="17dp"
+                    android:id="@+id/updateHD"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>

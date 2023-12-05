@@ -79,8 +79,8 @@ public class HoaDonFragment extends Fragment {
         Dialog dialog = builder.create();
         dialog.show();
 
-        TextInputLayout a_addTGBD = view.findViewById(R.id.a_addTGBD);
-        TextInputEditText b_addTGBD = view.findViewById(R.id.b_addTGBD);
+//        TextInputLayout a_addTGBD = view.findViewById(R.id.a_addTGBD);
+//        TextInputEditText b_addTGBD = view.findViewById(R.id.b_addTGBD);
         TextInputLayout a_addTGKT = view.findViewById(R.id.a_addTGKT);
         TextInputEditText b_addTGKT = view.findViewById(R.id.b_addTGKT);
         TextInputLayout a_addTT = view.findViewById(R.id.a_addTT);
@@ -200,26 +200,26 @@ public class HoaDonFragment extends Fragment {
         });
 
 
-        b_addTGBD.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() == 0) {
-                    a_addTGBD.setError("vui lòng nhập thời gian bắt đầu");
-                } else {
-                    a_addTGKT.setError(null);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+//        b_addTGBD.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                if (s.length() == 0) {
+//                    a_addTGBD.setError("vui lòng nhập thời gian bắt đầu");
+//                } else {
+//                    a_addTGKT.setError(null);
+//                }
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
         b_addTGKT.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -264,7 +264,7 @@ public class HoaDonFragment extends Fragment {
         btnadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String giaThue = b_addTGBD.getText().toString();
+//                String giaThue = b_addTGBD.getText().toString();
                 String trangThai = b_addTGKT.getText().toString();
                 String maLoai = b_addTT.getText().toString();
                 String maKH = b_addMKH.getText().toString();
@@ -274,7 +274,7 @@ public class HoaDonFragment extends Fragment {
                 String maNV = b_addMNV.getText().toString();
 
                 HoaDonModel hoaDonModel = new HoaDonModel();
-                hoaDonModel.setThoiGianBD(giaThue);
+//                hoaDonModel.setThoiGianBD(giaThue);
                 hoaDonModel.setThoiGianKT(trangThai);
                 hoaDonModel.setTongTien(Integer.valueOf(maLoai));
                 hoaDonModel.setMaKH(maKH);
@@ -284,13 +284,13 @@ public class HoaDonFragment extends Fragment {
                 hoaDonModel.setMaNv(maNV);
                 boolean check = dao.insert(hoaDonModel);
 
-                if (giaThue.isEmpty() || trangThai.isEmpty() || maLoai.isEmpty()||
+                if ( trangThai.isEmpty() || maLoai.isEmpty()||
                         maKH.isEmpty()||maL.isEmpty()||maP.isEmpty()||madv.isEmpty()||maNV.isEmpty()) {
-                    if (giaThue.equals("")) {
-                        a_addTGBD.setError("vui lòng nhập đầy đủ tên nhân viên ");
-                    } else {
-                        a_addTGBD.setError(null);
-                    }
+//                    if (giaThue.equals("")) {
+//                        a_addTGBD.setError("vui lòng nhập đầy đủ tên nhân viên ");
+//                    } else {
+//                        a_addTGBD.setError(null);
+//                    }
                     if (trangThai.equals("")) {
                         a_addTGKT.setError("vui lòng nhập đầy đủ năm sinh");
                     } else {
