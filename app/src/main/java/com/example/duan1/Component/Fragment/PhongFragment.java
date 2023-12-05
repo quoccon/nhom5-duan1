@@ -1,9 +1,10 @@
 package com.example.duan1.Component.Fragment;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -174,6 +175,23 @@ public class PhongFragment extends Fragment {
             }
         });
 
+        b_addNBD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String[] mucDoCongViec = {"Trống","Đang sửa chữa","Đã Có Khách"};
+
+                androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(getActivity());
+                builder.setTitle("Chọn mức độ công việc ");
+                builder.setItems(mucDoCongViec, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        b_addNBD.setText(mucDoCongViec[which]);
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        });
 
         btnaddnv.setOnClickListener(new View.OnClickListener() {
             @Override

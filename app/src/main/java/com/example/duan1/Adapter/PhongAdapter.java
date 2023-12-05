@@ -167,6 +167,25 @@ public class PhongAdapter extends RecyclerView.Adapter<PhongAdapter.ViewHolder> 
         b_updateNKT.setText(phongModel.getMaLoai());
         b_updateTenP.setText(phongModel.getTenPhong());
 
+
+        b_updateNBD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String[] mucDoCongViec = {"Trống","Đang sửa chữa","Đã Có Khách"};
+
+                androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(context);
+                builder.setTitle("Chọn mức độ công việc ");
+                builder.setItems(mucDoCongViec, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        b_updateNBD.setText(mucDoCongViec[which]);
+                    }
+                });
+                androidx.appcompat.app.AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        });
+
         btnupdateNV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
