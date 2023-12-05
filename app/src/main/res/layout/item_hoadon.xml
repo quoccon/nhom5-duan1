@@ -188,6 +188,7 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/btn_deleteHD"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:background="@drawable/delete"

@@ -2,12 +2,14 @@ package com.example.duan1.Adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,6 +80,16 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
 //        holder.txt.setText(getNhanVien(hoaDonList.get(position).getMaNv()));
         HoaDonModel hd = hoaDonList.get(position);
 
+        holder.btn_deleteHD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HoaDonModel hoaDonModel = hoaDonList.get(position);
+                deletehoadon(hoaDonModel);
+            }
+
+
+        });
+
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -114,6 +126,8 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
 
         TextView txtmahd, txttenkh, txtmaphong, txtloaiphong, txtBd, txtKt, txtDv, txtTongtien;
 
+        ImageView btn_deleteHD;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -126,9 +140,35 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
             txtKt = itemView.findViewById(R.id.txtkt);
             txtDv = itemView.findViewById(R.id.txtdv);
             txtTongtien = itemView.findViewById(R.id.txtTongtien);
+            btn_deleteHD = itemView.findViewById(R.id.btn_deleteHD);
         }
     }
 
+
+
+    public void deletehoadon(HoaDonModel model){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Xóa Hoá Đơn");
+        builder.setMessage("Bạn có chắc muốn xóa Hóa Đơn này chứ ?");
+
+        builder.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                hoaDonDAO = new HoaDonDAO(context);
+                hoaDonDAO.deleteHoaDon(model.getMaHd());
+                loadData();
+                Toast.makeText(context, "Đã Xóa", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        builder.setNegativeButton("không xóa", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        (builder.create()).show();
+    }
     private void diglogupdateHoaDon(HoaDonModel hoaDonModel) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
