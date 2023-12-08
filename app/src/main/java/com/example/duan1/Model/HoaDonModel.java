@@ -2,29 +2,29 @@ package com.example.duan1.Model;
 
 public class HoaDonModel {
     private int maHd;
-    private String ThoiGianBD;
-    private String ThoiGianKT;
 
     private int tongTien;
+    private String tinhtrang;
     private String maKH;
     private String maLoai;
     private String maPhong;
     private String maDv;
-    private String maNv;
 
+    private String ThoiGianBD;
+    private String ThoiGianKT;
     public HoaDonModel() {
     }
 
-    public HoaDonModel(int maHd, String thoiGianBD, String thoiGianKT, int tongTien, String maKH, String maLoai, String maPhong, String maDv, String maNv) {
+    public HoaDonModel(int maHd, int tongTien, String tinhtrang, String maKH, String maLoai, String maPhong, String maDv, String thoiGianBD, String thoiGianKT) {
         this.maHd = maHd;
-        ThoiGianBD = thoiGianBD;
-        ThoiGianKT = thoiGianKT;
         this.tongTien = tongTien;
+        this.tinhtrang = tinhtrang;
         this.maKH = maKH;
         this.maLoai = maLoai;
         this.maPhong = maPhong;
         this.maDv = maDv;
-        this.maNv = maNv;
+        ThoiGianBD = thoiGianBD;
+        ThoiGianKT = thoiGianKT;
     }
 
     public int getMaHd() {
@@ -35,28 +35,20 @@ public class HoaDonModel {
         this.maHd = maHd;
     }
 
-    public String getThoiGianBD() {
-        return ThoiGianBD;
-    }
-
-    public void setThoiGianBD(String thoiGianBD) {
-        ThoiGianBD = thoiGianBD;
-    }
-
-    public String getThoiGianKT() {
-        return ThoiGianKT;
-    }
-
-    public void setThoiGianKT(String thoiGianKT) {
-        ThoiGianKT = thoiGianKT;
-    }
-
     public int getTongTien() {
         return tongTien;
     }
 
     public void setTongTien(int tongTien) {
         this.tongTien = tongTien;
+    }
+
+    public String getTinhtrang() {
+        return tinhtrang;
+    }
+
+    public void setTinhtrang(String tinhtrang) {
+        this.tinhtrang = tinhtrang;
     }
 
     public String getMaKH() {
@@ -91,11 +83,19 @@ public class HoaDonModel {
         this.maDv = maDv;
     }
 
-    public String getMaNv() {
-        return maNv;
+    public String getThoiGianBD() {
+        return ThoiGianBD;
     }
 
-    public void setMaNv(String maNv) {
-        this.maNv = maNv;
+    public void setThoiGianBD(String thoiGianBD) {
+        ThoiGianBD = thoiGianBD;
+    }
+
+    public String getThoiGianKT() {
+        return ThoiGianKT;
+    }
+
+    public void setThoiGianKT(String thoiGianKT) {
+        ThoiGianKT = thoiGianKT;
     }
 }

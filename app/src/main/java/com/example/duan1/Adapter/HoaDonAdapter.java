@@ -73,6 +73,7 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
         holder.txtKt.setText(hoaDonList.get(position).getThoiGianKT());
         holder.txtmahd.setText(String.valueOf(hoaDonList.get(position).getMaHd()));
         holder.txtTongtien.setText(String.valueOf(hoaDonList.get(position).getTongTien()));
+        holder.txttinhtrang.setText(hoaDonList.get(position).getTinhtrang());
         holder.txttenkh.setText(getMaKhachHang(hoaDonList.get(position).getMaKH()));
         holder.txtloaiphong.setText(getLoaiPhong(hoaDonList.get(position).getMaLoai()));
         holder.txtmaphong.setText(getmaPhong(hoaDonList.get(position).getMaPhong()));
@@ -124,7 +125,7 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtmahd, txttenkh, txtmaphong, txtloaiphong, txtBd, txtKt, txtDv, txtTongtien;
+        TextView txtmahd, txttenkh, txtmaphong, txtloaiphong, txtBd, txtKt, txtDv, txtTongtien,txttinhtrang;
 
         ImageView btn_deleteHD;
 
@@ -136,6 +137,7 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
             txttenkh = itemView.findViewById(R.id.txttenkh);
             txtmaphong = itemView.findViewById(R.id.txtmaPhong);
             txtloaiphong = itemView.findViewById(R.id.txtloaip);
+            txttinhtrang = itemView.findViewById(R.id.txtTinhtrang);
             txtBd = itemView.findViewById(R.id.txtbd);
             txtKt = itemView.findViewById(R.id.txtkt);
             txtDv = itemView.findViewById(R.id.txtdv);
@@ -195,6 +197,8 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
         TextInputEditText b_addMDV = view.findViewById(R.id.b_updateMDV);
         TextInputLayout a_addMNV = view.findViewById(R.id.a_updateMNV);
         TextInputEditText b_addMNV = view.findViewById(R.id.b_updateMNV);
+        TextInputLayout a_addtinhtrang = view.findViewById(R.id.a_updatetinhtran);
+        TextInputEditText b_addtinhtrang = view.findViewById(R.id.b_updatetinhtrang);
         Button btnadd = view.findViewById(R.id.updateHD);
 
         b_addTGKT.setText(hoaDonModel.getMaDv());
@@ -204,6 +208,7 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
         b_addMP.setText(hoaDonModel.getMaPhong());
         b_addMDV.setText(hoaDonModel.getThoiGianBD());
         b_addMNV.setText(hoaDonModel.getThoiGianKT());
+        b_addtinhtrang.setText(hoaDonModel.getTinhtrang());
 
 
         b_addMKH.addTextChangedListener(new TextWatcher() {
@@ -369,6 +374,24 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
 
             }
         });
+        b_addtinhtrang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String[] mucDoCongViec = {"Chưa Thanh Toán","Đã Thanh Toán"};
+
+                androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(context);
+                builder.setTitle("Chọn trạng thái ");
+                builder.setItems(mucDoCongViec, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        b_addtinhtrang.setText(mucDoCongViec[which]);
+                    }
+                });
+                androidx.appcompat.app.AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        });
+
         btnadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -380,6 +403,7 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
                 String maP = b_addMP.getText().toString();
                 String madv = b_addMDV.getText().toString();
                 String maNV = b_addMNV.getText().toString();
+                String tinhtrang = b_addtinhtrang.getText().toString();
 
 
                     if (trangThai.isEmpty()) {
@@ -424,7 +448,8 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
                 hoaDonModel.setMaLoai(maL);
                 hoaDonModel.setMaPhong(maP);
                 hoaDonModel.setMaDv(madv);
-                hoaDonModel.setMaNv(maNV);
+                hoaDonModel.setTinhtrang(tinhtrang);
+
 
                 hoaDonDAO = new HoaDonDAO(context);
                 boolean check= hoaDonDAO.updateHoaDon(hoaDonModel);

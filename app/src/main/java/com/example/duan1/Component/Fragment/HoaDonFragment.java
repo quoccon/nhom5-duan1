@@ -1,6 +1,7 @@
 package com.example.duan1.Component.Fragment;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -95,6 +96,8 @@ public class HoaDonFragment extends Fragment {
         TextInputEditText b_addMDV = view.findViewById(R.id.b_addMDV);
         TextInputLayout a_addMNV = view.findViewById(R.id.a_addMNV);
         TextInputEditText b_addMNV = view.findViewById(R.id.b_addMNV);
+        TextInputLayout a_addtinhtrang = view.findViewById(R.id.a_addtinhtrang);
+        TextInputEditText b_addtinhtrang = view.findViewById(R.id.b_addTinhtrang);
         Button btnadd = view.findViewById(R.id.addHD);
 
 
@@ -261,78 +264,96 @@ public class HoaDonFragment extends Fragment {
 
             }
         });
+
+        b_addtinhtrang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String[] mucDoCongViec = {"Chưa Thanh Toán","Đã Thanh Toán"};
+
+                androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(getActivity());
+                builder.setTitle("Chọn trạng thái ");
+                builder.setItems(mucDoCongViec, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        b_addtinhtrang.setText(mucDoCongViec[which]);
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        });
         btnadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                String giaThue = b_addTGBD.getText().toString();
                 String trangThai = b_addTGKT.getText().toString();
                 String maLoai = b_addTT.getText().toString();
                 String maKH = b_addMKH.getText().toString();
                 String maL = b_addML.getText().toString();
                 String maP = b_addMP.getText().toString();
                 String madv = b_addMDV.getText().toString();
-                String maNV = b_addMNV.getText().toString();
+                String thoigianbatdau = b_addMNV.getText().toString();
+                String tinhtrang = b_addtinhtrang.getText().toString();
 
-                HoaDonModel hoaDonModel = new HoaDonModel();
-//                hoaDonModel.setThoiGianBD(giaThue);
-                hoaDonModel.setThoiGianKT(trangThai);
-                hoaDonModel.setTongTien(Integer.valueOf(maLoai));
-                hoaDonModel.setMaKH(maKH);
-                hoaDonModel.setMaLoai(maL);
-                hoaDonModel.setMaPhong(maP);
-                hoaDonModel.setMaDv(madv);
-                hoaDonModel.setMaNv(maNV);
-                boolean check = dao.insert(hoaDonModel);
-
-                if ( trangThai.isEmpty() || maLoai.isEmpty()||
-                        maKH.isEmpty()||maL.isEmpty()||maP.isEmpty()||madv.isEmpty()||maNV.isEmpty()) {
-//                    if (giaThue.equals("")) {
-//                        a_addTGBD.setError("vui lòng nhập đầy đủ tên nhân viên ");
-//                    } else {
-//                        a_addTGBD.setError(null);
-//                    }
+                if (trangThai.isEmpty() || maLoai.isEmpty() || maKH.isEmpty() || maL.isEmpty() || maP.isEmpty() || madv.isEmpty() || tinhtrang.isEmpty()) {
                     if (trangThai.equals("")) {
-                        a_addTGKT.setError("vui lòng nhập đầy đủ năm sinh");
+                        b_addTGKT.setError("Vui lòng nhập trạng thái");
                     } else {
-                        a_addTGKT.setError(null);
+                        b_addTGKT.setError(null);
                     }
                     if (maLoai.equals("")) {
-                        a_addTT.setError("vui lòng nhập tài khoản");
+                        b_addTT.setError("Vui lòng nhập mã loại");
                     } else {
-                        a_addTT.setError(null);
+                        b_addTT.setError(null);
                     }
-                    if (maKH.equals("")){
-                        a_addMKH.setError("vui lòng nhập ma khách hàng");
-                    }else {
-                        a_addMKH.setError(null);
+                    if (maKH.equals("")) {
+                        b_addMKH.setError("Vui lòng nhập mã khách hàng");
+                    } else {
+                        b_addMKH.setError(null);
                     }
-                    if (maL.equals("")){
-                        a_addML.setError("vui lòng nhập ma loại");
-                    }else {
-                        a_addML.setError(null);
+                    if (maL.equals("")) {
+                        b_addML.setError("Vui lòng nhập mã loại");
+                    } else {
+                        b_addML.setError(null);
                     }
-                    if (maP.equals("")){
-                        a_addMP.setError("vui lòng nhập ma phòng");
-                    }else {
-                        a_addMP.setError(null);
+                    if (maP.equals("")) {
+                        b_addMP.setError("Vui lòng nhập mã phòng");
+                    } else {
+                        b_addMP.setError(null);
                     }
-                    if (madv.equals("")){
-                        a_addMDV.setError("vui lòng nhập ma dịch vụ");
-                    }else {
-                        a_addMDV.setError(null);
+                    if (madv.equals("")) {
+                        b_addMDV.setError("Vui lòng nhập mã dịch vụ");
+                    } else {
+                        b_addMDV.setError(null);
                     }
-                    if (maNV.equals("")){
-                        a_addMNV.setError("vui lòng nhập ma nhân viên");
-                    }else {
-                        a_addMNV.setError(null);
+                    if (thoigianbatdau.equals("")) {
+                        b_addMNV.setError("Vui lòng nhập thời gian bắt đầu");
+                    } else {
+                        b_addMNV.setError(null);
+                    }
+                    if (tinhtrang.equals("")) {
+                        b_addtinhtrang.setError("Vui lòng nhập tình trạng");
+                    } else {
+                        b_addtinhtrang.setError(null);
                     }
                 } else {
+                    HoaDonModel hoaDonModel = new HoaDonModel();
+                    hoaDonModel.setThoiGianKT(trangThai);
+                    hoaDonModel.setTongTien(Integer.valueOf(maLoai));
+                    hoaDonModel.setMaKH(maKH);
+                    hoaDonModel.setMaLoai(maL);
+                    hoaDonModel.setMaPhong(maP);
+                    hoaDonModel.setMaDv(madv);
+                    hoaDonModel.setThoiGianBD(thoigianbatdau);
+                    hoaDonModel.setTinhtrang(tinhtrang);
+
+                    boolean check = dao.insert(hoaDonModel);
+
                     if (check) {
                         loadData();
-                        Toast.makeText(getContext(), "thêm nhân viên thành công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Thêm hóa đơn thành công", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     } else {
-                        Toast.makeText(getContext(), "thêm nhân viên thất bại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Thêm hóa đơn thất bại", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

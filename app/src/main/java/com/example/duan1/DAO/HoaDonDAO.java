@@ -29,10 +29,10 @@ public class HoaDonDAO {
         if (cursor.getCount() != 0) {
             cursor.moveToNext();
             do {
-                list.add(new HoaDonModel(cursor.getInt(0),
-                        cursor.getString(6),cursor.getString(5),cursor.getInt(1),
-                        cursor.getString(2),cursor.getString(4),
-                        cursor.getString(3),cursor.getString(4),cursor.getString(2)));
+                list.add(new HoaDonModel(cursor.getInt(0), cursor.getInt(1),
+                        cursor.getString(2),cursor.getString(3),cursor.getString(4),
+                        cursor.getString(5),cursor.getString(8),
+                        cursor.getString(7),cursor.getString(6)));
             } while (cursor.moveToNext());
         }
         return list;
@@ -41,14 +41,15 @@ public class HoaDonDAO {
     public boolean insert(HoaDonModel hoaDonModel) {
         SQLiteDatabase db =dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("ThoiGianBD", hoaDonModel.getThoiGianBD());
-        values.put("ThoiGianKT",hoaDonModel.getThoiGianKT());
+
         values.put("tongTien", hoaDonModel.getTongTien());
+        values.put("tinhtang",hoaDonModel.getTinhtrang());
         values.put("maKH",hoaDonModel.getMaKH());
         values.put("maLoai",hoaDonModel.getMaLoai());
         values.put("maPhong",hoaDonModel.getMaPhong());
         values.put("maDv",hoaDonModel.getMaDv());
-        values.put("maNv",hoaDonModel.getMaNv());
+        values.put("ThoiGianBD", hoaDonModel.getThoiGianBD());
+        values.put("ThoiGianKT",hoaDonModel.getThoiGianKT());
 
         long check = db.insert("HoaDon", null, values);
         if (check == -1) {
@@ -63,14 +64,14 @@ public class HoaDonDAO {
         SQLiteDatabase db =dbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("ThoiGianBD", hoaDonModel.getThoiGianBD());
-        values.put("ThoiGianKT", hoaDonModel.getThoiGianKT());
         values.put("tongTien", hoaDonModel.getTongTien());
-        values.put("maKH", hoaDonModel.getMaKH());
-        values.put("maLoai", hoaDonModel.getMaLoai());
-        values.put("maPhong", hoaDonModel.getMaPhong());
-        values.put("maDv", hoaDonModel.getMaDv());
-        values.put("maNv", hoaDonModel.getMaNv());
+        values.put("tinhtang",hoaDonModel.getTinhtrang());
+        values.put("maKH",hoaDonModel.getMaKH());
+        values.put("maLoai",hoaDonModel.getMaLoai());
+        values.put("maPhong",hoaDonModel.getMaPhong());
+        values.put("maDv",hoaDonModel.getMaDv());
+        values.put("ThoiGianBD", hoaDonModel.getThoiGianBD());
+        values.put("ThoiGianKT",hoaDonModel.getThoiGianKT());
         long check = db.update("HoaDon", values, "maHd =?", new String[]{String.valueOf(hoaDonModel.getMaHd())});
         if (check == -1) {
             return false;
