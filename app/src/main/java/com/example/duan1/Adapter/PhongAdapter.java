@@ -174,7 +174,7 @@ public class PhongAdapter extends RecyclerView.Adapter<PhongAdapter.ViewHolder> 
                 String[] mucDoCongViec = {"Trống","Đang sửa chữa","Đã Có Khách"};
 
                 androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(context);
-                builder.setTitle("Chọn mức độ công việc ");
+                builder.setTitle("Chọn trạng thái "); 
                 builder.setItems(mucDoCongViec, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

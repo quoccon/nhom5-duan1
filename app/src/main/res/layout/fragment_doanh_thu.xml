@@ -1,95 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- revenue_layout.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Component.Fragment.DoanhThuFragment">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/dayStart"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:backgroundTint="#C12020"
-            android:text="Từ ngày"
-            android:textSize="17dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/txtdayStart"
-            android:layout_width="260dp"
-            android:layout_height="50dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/dayEnd"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:backgroundTint="#C12020"
-            android:text="Đến ngày"
-            android:textSize="17dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/txtdayEnd"
-            android:layout_width="260dp"
-            android:layout_height="50dp"
-            tools:ignore="SpeakableTextPresentCheck" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:backgroundTint="#C12020"
-            android:text="Loại phòng"
-            android:textSize="17dp"
-            android:textStyle="bold" />
-
-        <Spinner
-            android:layout_width="wrap_content"
-            android:id="@+id/spinDT"
-            android:layout_marginLeft="50dp"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/DoanhThu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#C12020"
-        android:text="Doanh thu"
-        android:textSize="17dp"
-        android:textStyle="bold" />
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/ed_doanhthu"
-        android:layout_width="400dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="Doanh Thu:"
-        android:textColor="#C12020"
-        android:textSize="30dp"
-        android:textStyle="bold" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"/>
+    <!-- TextView để hiển thị tổng doanh thu -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Doanh thu của ngày hôm nay :"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/red"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="50dp"/>
+    <TextView
+        android:id="@+id/tvTotalRevenue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="16dp"
+        android:background="@color/black"
+        android:textColor="@android:color/white"
+        android:text="Total Revenue: $0" />
+
+    <!-- ListView để hiển thị danh sách phiếu mượn dao -->
+    <ListView
+        android:id="@+id/listViewRevenue"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp" />
 
 </LinearLayout>

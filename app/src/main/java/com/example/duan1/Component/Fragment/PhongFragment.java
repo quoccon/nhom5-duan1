@@ -178,10 +178,10 @@ public class PhongFragment extends Fragment {
         b_addNBD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String[] mucDoCongViec = {"Trống","Đang sửa chữa","Đã Có Khách"};
+                String[] mucDoCongViec = {"Trống","Đang sửa chữa","Đã trả phòng"};
 
                 androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(getActivity());
-                builder.setTitle("Chọn mức độ công việc ");
+                builder.setTitle("Chọn trạng thái ");
                 builder.setItems(mucDoCongViec, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

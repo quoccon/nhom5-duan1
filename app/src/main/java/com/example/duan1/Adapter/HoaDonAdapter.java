@@ -148,10 +148,11 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
 
     public void deletehoadon(HoaDonModel model){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Xóa Hoá Đơn");
-        builder.setMessage("Bạn có chắc muốn xóa Hóa Đơn này chứ ?");
+        builder.setTitle("Xóa Hóa Đơn");
+        builder.setIcon(android.R.drawable.ic_delete);
+        builder.setMessage("Bạn chắc chắn xóa Hóa Đơn này chứ ?");
 
-        builder.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 hoaDonDAO = new HoaDonDAO(context);
@@ -161,7 +162,7 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
 
             }
         });
-        builder.setNegativeButton("không xóa", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -431,10 +432,10 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
 
                     if (check) {
                         loadData();
-                        Toast.makeText(context, "thêm nhân viên thành công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "update thành công", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     } else {
-                        Toast.makeText(context, "thêm nhân viên thất bại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "update thất bại", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
