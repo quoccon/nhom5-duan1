@@ -33,42 +33,37 @@
 <!--                android:hint="nhập ma nhân viên"-->
 <!--                android:id="@+id/b_addTGBD"/>-->
 <!--        </com.google.android.material.textfield.TextInputLayout>-->
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="10dp"
-            android:id="@+id/a_addTGKT">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
+            android:orientation="horizontal">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:hint="nhập ma dịch vụ"
-                android:id="@+id/b_addTGKT"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="10dp"
-            android:id="@+id/a_addTT">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/a_addTGKT">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="nhập ma dịch vụ"
+                    android:id="@+id/b_addTGKT"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:hint="nhập tổng tiền"
-                android:id="@+id/b_addTT"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="10dp"
-            android:id="@+id/a_addMKH">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="nhập ma khách hàng"
-                android:id="@+id/b_addMKH"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:id="@+id/a_addMKH">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="nhập ma khách hàng"
+                    android:id="@+id/b_addMKH"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -145,6 +140,18 @@
                 android:cursorVisible="false"
                 android:focusable="false"
                 android:id="@+id/b_addTinhtrang"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:id="@+id/a_addTT">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="nhập tổng tiền"
+                android:id="@+id/b_addTT"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
