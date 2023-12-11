@@ -40,8 +40,8 @@ public class DichVuFragment extends Fragment {
     FloatingActionButton fab;
     Dialog dialog;
 
-    TextInputEditText ed_tenDV,ed_giatien,ed_mota,ed_updateTDV,ed_update_giatien,ed_update_mota;
-    Button btn_addichvu,btn_updatedv;
+    TextInputEditText ed_tenDV, ed_giatien, ed_mota, ed_updateTDV, ed_update_giatien, ed_update_mota;
+    Button btn_addichvu, btn_updatedv;
 
 
     public DichVuFragment() {
@@ -51,7 +51,7 @@ public class DichVuFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_dich_vu,container,false);
+        View v = inflater.inflate(R.layout.fragment_dich_vu, container, false);
 
         lv_dichvu = v.findViewById(R.id.rcv_DV);
         fab = v.findViewById(R.id.fab_DV);
@@ -96,11 +96,12 @@ public class DichVuFragment extends Fragment {
         return v;
     }
 
-    public void capnhatlenlist(){
+    public void capnhatlenlist() {
         list = (ArrayList<DichVuModel>) dao.getAll();
-        adapter = new DichVuAdapter(getActivity(),this,list);
+        adapter = new DichVuAdapter(getActivity(), this, list);
         lv_dichvu.setAdapter(adapter);
     }
+
     private void searchDichVu(String keyword) {
         ArrayList<DichVuModel> searchResults = new ArrayList<>();
         for (DichVuModel dichVu : list) {
@@ -113,7 +114,7 @@ public class DichVuFragment extends Fragment {
         lv_dichvu.setAdapter(adapter);
     }
 
-    protected void adddialogDV(final Context context){
+    protected void adddialogDV(final Context context) {
         dialog = new Dialog(context);
         dialog.setContentView(R.layout.add_dichvu);
         ed_tenDV = dialog.findViewById(R.id.b_addTDV);
@@ -121,27 +122,51 @@ public class DichVuFragment extends Fragment {
         ed_mota = dialog.findViewById(R.id.b_addmota);
         btn_addichvu = dialog.findViewById(R.id.addichvu);
 
+//        btn_addichvu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                item = new DichVuModel();
+//                item.setTenDV(ed_tenDV.getText().toString());
+//                item.setGiatien(Integer.parseInt(ed_giatien.getText().toString()));
+//                item.setMotaDV(ed_mota.getText().toString());
+//                if (validate() > 0) {
+//                    if (dao.insertDV(item) > 0) {
+//                        Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        Toast.makeText(context, "thêm thất bại", Toast.LENGTH_SHORT).show();
+//                    }
+//                    capnhatlenlist();
+//                    dialog.dismiss();
+//                }
+//            }
+//        });
         btn_addichvu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                item = new DichVuModel();
-                item.setTenDV(ed_tenDV.getText().toString());
-                item.setGiatien(Integer.parseInt(ed_giatien.getText().toString()));
-                item.setMotaDV(ed_mota.getText().toString());
-                if (validate() > 0){
-                    if (dao.insertDV(item) > 0){
+                String tenDV = ed_tenDV.getText().toString().trim();
+                String giatienStr = ed_giatien.getText().toString().trim();
+                String motaDV = ed_mota.getText().toString().trim();
+
+                if (validate(tenDV, giatienStr, motaDV)) {
+                    item = new DichVuModel();
+                    item.setTenDV(tenDV);
+                    item.setGiatien(Integer.parseInt(giatienStr));
+                    item.setMotaDV(motaDV);
+
+                    if (dao.insertDV(item) > 0) {
                         Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show();
-                    }else {
-                        Toast.makeText(context, "thêm thất bại", Toast.LENGTH_SHORT).show();
+                        capnhatlenlist();
+                        dialog.dismiss();
+                    } else {
+                        Toast.makeText(context, "Thêm thất bại", Toast.LENGTH_SHORT).show();
                     }
-                    capnhatlenlist();
-                    dialog.dismiss();
                 }
             }
         });
         dialog.show();
     }
-    public void DeleteDV(final String id){
+
+    public void DeleteDV(final String id) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Delete");
         builder.setMessage("Bạn có muốn xóa không");
@@ -165,7 +190,8 @@ public class DichVuFragment extends Fragment {
         AlertDialog alertDialog = builder.create();
         builder.show();
     }
-    protected void updateDV(final Context context){
+
+    protected void updateDV(final Context context) {
         dialog = new Dialog(context);
         dialog.setContentView(R.layout.update_dichvu);
         ed_updateTDV = dialog.findViewById(R.id.b_updateTDV);
@@ -180,26 +206,93 @@ public class DichVuFragment extends Fragment {
         btn_updatedv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                item.setTenDV(ed_updateTDV.getText().toString());
-                item.setGiatien(Integer.parseInt(ed_update_giatien.getText().toString()));
-                item.setMotaDV(ed_update_mota.getText().toString());
-                if (dao.updateDV(item) > 0){
-                    Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-                    capnhatlenlist();
-                    dialog.dismiss();
-                }else {
-                    Toast.makeText(context, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
+                String tenDV = ed_updateTDV.getText().toString().trim();
+                String giatienStr = ed_update_giatien.getText().toString().trim();
+                String motaDV = ed_update_mota.getText().toString().trim();
+
+                if (validate(tenDV, giatienStr, motaDV)) {
+                    item.setTenDV(tenDV);
+                    item.setGiatien(Integer.parseInt(giatienStr));
+                    item.setMotaDV(motaDV);
+
+                    if (dao.updateDV(item) > 0) {
+                        Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                        capnhatlenlist();
+                        dialog.dismiss();
+                    } else {
+                        Toast.makeText(context, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
-        dialog.show();
+
+
     }
-    public int validate(){
-        int check = 1;
-        if (ed_tenDV.getText().toString().length() == 0 || ed_giatien.getText().toString().length() == 0 || ed_mota.getText().toString().length() == 0){
-            Toast.makeText(getContext(), "Bạn Phải nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-            check = -1;
+
+//    public boolean validate(String tenDV, String giatienStr, String motaDV) {
+//        boolean isValid = true;
+//
+//        if (tenDV.isEmpty() || giatienStr.isEmpty() || motaDV.isEmpty()) {
+//            Toast.makeText(getContext(), "Bạn phải nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+//            isValid = false;
+//        } else {
+//            try {
+//                int giatien = Integer.parseInt(giatienStr);
+//                // Thêm các kiểm tra khác nếu cần
+//            } catch (NumberFormatException e) {
+//                ed_update_giatien.setError("Giá tiền phải là số");
+//                isValid = false;
+//            }
+//        }
+//
+//        return isValid;
+//    }
+//    btn_addichvu.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            String tenDV = ed_tenDV.getText().toString().trim();
+//            String giatienStr = ed_giatien.getText().toString().trim();
+//            String motaDV = ed_mota.getText().toString().trim();
+//
+//            if (validate(tenDV, giatienStr, motaDV)) {
+//                item = new DichVuModel();
+//                item.setTenDV(tenDV);
+//                item.setGiatien(Integer.parseInt(giatienStr));
+//                item.setMotaDV(motaDV);
+//
+//                if (dao.insertDV(item) > 0) {
+//                    Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show();
+//                    capnhatlenlist();
+//                    dialog.dismiss();
+//                } else {
+//                    Toast.makeText(context, "Thêm thất bại", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        }
+//    });
+
+    // Hàm validate đã được sửa để kiểm tra giá tiền và hiển thị thông báo lỗi
+    public boolean validate(String tenDV, String giatienStr, String motaDV) {
+        boolean isValid = true;
+
+        if (tenDV.isEmpty() || giatienStr.isEmpty() || motaDV.isEmpty()) {
+            Toast.makeText(getContext(), "Bạn phải nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            isValid = false;
+        } else {
+            try {
+                int giatien = Integer.parseInt(giatienStr);
+                if (giatien <= 0) {
+                    ed_giatien.setError("Giá tiền phải là số lớn hơn 0");
+                    isValid = false;
+                }
+                // Thêm các kiểm tra khác nếu cần
+            } catch (NumberFormatException e) {
+                ed_giatien.setError("Giá tiền phải là số");
+                isValid = false;
+            }
         }
-        return check;
+
+        return isValid;
     }
+
 }

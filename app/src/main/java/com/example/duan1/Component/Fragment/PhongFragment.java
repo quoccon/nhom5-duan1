@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class PhongFragment extends Fragment {
     TextInputEditText edSoP, edGia;
     private String[] roomTypes = {"Loại 1", "Loại 2", "Loại 3"};
     private Button btnAddPhong;
+    TextInputLayout a_addGT, a_addNBD,a_addNKT,a_tenP;
 
 
     @Override
@@ -196,51 +198,109 @@ public class PhongFragment extends Fragment {
         btnaddnv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String giaThue = b_addGT.getText().toString();
-                String trangThai = b_addNBD.getText().toString();
-                String maLoai = b_addNKT.getText().toString();
-                String tenP = b_tenP.getText().toString();
-                PhongModel phongModel = new PhongModel();
-                phongModel.setGiaThue(Integer.parseInt(giaThue));
-                phongModel.setTrangThai(trangThai);
-                phongModel.setMaLoai(maLoai);
-                phongModel.setTenPhong(tenP);
-                boolean check = dao.insert( phongModel);
+                EditText editTextGT = dialog.findViewById(R.id.b_addGT);
+                EditText editTextNBD = dialog.findViewById(R.id.b_addNBD);
+                EditText editTextNKT = dialog.findViewById(R.id.b_addNKT);
+                EditText editTextTenP = dialog.findViewById(R.id.b_addTenP);
 
-                if (giaThue.isEmpty() || trangThai.isEmpty() || maLoai.isEmpty()|| tenP.isEmpty()) {
-                    if (giaThue.equals("")) {
-                        a_addGT.setError("vui lòng nhập đầy đủ tên nhân viên ");
+                if (editTextGT != null && editTextNBD != null && editTextNKT != null && editTextTenP != null) {
+                    String giaThue = editTextGT.getText().toString().trim();
+                    String trangThai = editTextNBD.getText().toString().trim();
+                    String maLoai = editTextNKT.getText().toString().trim();
+                    String tenP = editTextTenP.getText().toString().trim();
+
+                    if (giaThue.isEmpty() || trangThai.isEmpty() || maLoai.isEmpty() || tenP.isEmpty()) {
+                        Toast.makeText(getContext(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                     } else {
-                        a_addGT.setError(null);
-                    }
-                    if (trangThai.equals("")) {
-                        a_addNBD.setError("vui lòng nhập đầy đủ năm sinh");
-                    } else {
-                        a_addNBD.setError(null);
-                    }
-                    if (maLoai.equals("")) {
-                        a_addNKT.setError("vui lòng nhập tài khoản");
-                    } else {
-                        a_addNKT.setError(null);
-                    }if (tenP.equals("")){
-                        a_tenP.setError("vui lòng tên phòng");
-                    }else {
-                        a_tenP.setError(null);
+                        // Kiểm tra nếu giá tiền không phải là số
+                        try {
+                            int giaThueValue = Integer.parseInt(giaThue);
+
+                            // Tiếp tục xử lý dữ liệu ...
+                            PhongModel phongModel = new PhongModel();
+                            phongModel.setGiaThue(giaThueValue);
+                            phongModel.setTrangThai(trangThai);
+                            phongModel.setMaLoai(maLoai);
+                            phongModel.setTenPhong(tenP);
+
+                            boolean check = dao.insert(phongModel);
+
+                            if (check) {
+                                loadData();
+                                Toast.makeText(getContext(), "Thêm phòng thành công", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            } else {
+                                Toast.makeText(getContext(), "Thêm phòng thất bại", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (NumberFormatException e) {
+                            // Nếu giá tiền không phải là số, hiển thị thông báo lỗi
+                            editTextGT.setError("Giá tiền phải là số");
+                        }
                     }
                 } else {
-                    if (check) {
-                        loadData();
-                        Toast.makeText(getContext(), "thêm nhân viên thành công", Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    } else {
-                        Toast.makeText(getContext(), "thêm nhân viên thất bại", Toast.LENGTH_SHORT).show();
-                    }
+                    // Có lỗi xảy ra khi tìm kiếm EditText
+                    Toast.makeText(getContext(), "Đã xảy ra lỗi khi lấy giá trị từ EditText", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
 
+
+
+
+
+
+
+
+//        btnaddnv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String giaThue = b_addGT.getText().toString();
+//                String trangThai = b_addNBD.getText().toString();
+//                String maLoai = b_addNKT.getText().toString();
+//                String tenP = b_tenP.getText().toString();
+//                PhongModel phongModel = new PhongModel();
+//                phongModel.setGiaThue(Integer.parseInt(giaThue));
+//                phongModel.setTrangThai(trangThai);
+//                phongModel.setMaLoai(maLoai);
+//                phongModel.setTenPhong(tenP);
+//                boolean check = dao.insert( phongModel);
+//
+//                if (giaThue.isEmpty() || trangThai.isEmpty() || maLoai.isEmpty()|| tenP.isEmpty()) {
+//                    if (giaThue.equals("")) {
+//                        a_addGT.setError("vui lòng nhập đầy đủ tên nhân viên ");
+//                    } else {
+//                        a_addGT.setError(null);
+//                    }
+//                    if (trangThai.equals("")) {
+//                        a_addNBD.setError("vui lòng nhập đầy đủ năm sinh");
+//                    } else {
+//                        a_addNBD.setError(null);
+//                    }
+//                    if (maLoai.equals("")) {
+//                        a_addNKT.setError("vui lòng nhập tài khoản");
+//                    } else {
+//                        a_addNKT.setError(null);
+//                    }if (tenP.equals("")){
+//                        a_tenP.setError("vui lòng tên phòng");
+//                    }else {
+//                        a_tenP.setError(null);
+//                    }
+//                } else {
+//                    if (check) {
+//                        loadData();
+//                        Toast.makeText(getContext(), "thêm nhân viên thành công", Toast.LENGTH_SHORT).show();
+//                        dialog.dismiss();
+//                    } else {
+//                        Toast.makeText(getContext(), "thêm nhân viên thất bại", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            }
+//        });
+
+
     }
+
 
 
 
